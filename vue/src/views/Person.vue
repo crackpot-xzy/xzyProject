@@ -58,6 +58,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import store from "@/store";
+import axios from "axios";
 export default {
   name: "Person",
   components: {Footer,Header},
@@ -73,7 +74,19 @@ export default {
     }
   },
   methods:{
-
+    ChangePersonInfo(){
+      axios.post("http://localhost:8081/PersonInfo",this.person)
+          .then((res)=>{
+            if(res.data.flag){
+              this.$message.success(res.data.msg);
+            }else{
+              this.$message.error(res.data.msg)
+            }
+            store.commit("set",res.data.data);
+          }).finally(()=>{
+            location.reload()
+      })
+    },
   }
 }
 </script>
