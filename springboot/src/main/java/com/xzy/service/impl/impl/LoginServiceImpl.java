@@ -25,6 +25,9 @@ public class LoginServiceImpl extends ServiceImpl<UserDao, User> implements Logi
             if (u==null){
                 return new R(false,null,"密码错误");
             }else{
+                if(u.getPrivileges()==0){
+                    return new R(false,null,"当前账号无权访问");
+                }
                 return new R(true,u,null);
             }
         }

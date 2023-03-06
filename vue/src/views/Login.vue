@@ -68,6 +68,7 @@
 <script >
 import router from "@/router";
 import axios from "axios";
+import store from "@/store";
 // const axios = require('axios');
   export default {
      name: "Login",
@@ -76,7 +77,9 @@ import axios from "axios";
         axios.post("http://localhost:8081/Login",this.formData)
             .then((res)=>{
               if(res.data.flag){
-                this.$message.success(res.data.msg),
+                this.$message.success(res.data.msg);
+                store.commit("setId",res.data.data.id);
+                this.$message.info("info"+store.state.userId);
                 router.push('/Home')
               }else{
                 this.$message.error(res.data.msg)
