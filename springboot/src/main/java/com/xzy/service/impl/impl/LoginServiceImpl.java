@@ -28,7 +28,7 @@ public class LoginServiceImpl extends ServiceImpl<UserDao, User> implements Logi
                 if(u.getPrivileges()==0){
                     return new R(false,null,"当前账号无权访问");
                 }
-                return new R(true,u,null);
+                return new R(true,u,"欢迎使用网络舆情分析系统");
             }
         }
     }

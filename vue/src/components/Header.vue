@@ -18,19 +18,23 @@
     <el-menu-item index="/Analysis"><el-icon><Platform /></el-icon>舆情分析</el-menu-item>
     <el-menu-item index="/Record"><el-icon><Checked /></el-icon>历史记录</el-menu-item>
     <div class="flex-grow" />
-    <el-menu-item index="/Login"><el-icon><SwitchButton /></el-icon>退出系统</el-menu-item>
+    <el-menu-item index="/Login" @click="clean">
+      <el-icon><SwitchButton /></el-icon>
+      退出系统
+    </el-menu-item>
   </el-menu>
 
 </template>
 
-<script lang="js" setup>
-import router from "@/router";
+<script >
+import store from "@/store";
 
 export default {
   name: "Header",
   methods:{
-    toHome(){
-      router.push("/")
+    clean(){
+      store.commit("clean");
+      // this.$message.info("123"+store.state.userId+1)
     },
   }
 }

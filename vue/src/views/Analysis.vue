@@ -11,7 +11,7 @@
     </el-date-picker>
     <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px">舆情分析</el-button>
     <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 100px">分析结果保存</el-button>
-    <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><DeleteFilled /></el-icon>清空数据</el-button>
+
   </div>
   <div style="height: 540px;display: flex;margin-top: 15px">
     <div style="background-color: floralwhite;height: 540px;width: 500px"></div>

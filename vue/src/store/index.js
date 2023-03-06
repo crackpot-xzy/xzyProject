@@ -7,8 +7,11 @@ export default createStore({
   getters: {
   },
   mutations: {
-    setId(state,id){
+    set(state,id){
       state.userId=id;
+    },
+    clean(state){
+      state.userId='';
     }
 
   },

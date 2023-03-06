@@ -10,6 +10,7 @@
         end-placeholder="结束日期">
     </el-date-picker>
     <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px">查询</el-button>
+    <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><DeleteFilled /></el-icon>清空数据</el-button>
   </div>
   <el-table
       :data="tableData"

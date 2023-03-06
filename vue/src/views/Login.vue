@@ -1,4 +1,4 @@
-<template >
+<template>
   <h1>基于自然语言处理的网络舆情分析系统</h1>
     <div id="main">
       <el-tabs type="border-card">
@@ -29,13 +29,13 @@
           </div>
         </el-tab-pane>
 
-        <el-tab-pane label="注册">
+        <el-tab-pane label="注册" :model="signData">
           <div style="display: flex;justify-content: center;margin-top: 20px">
             <h4>账号：</h4>
             <el-input
                 style="width: 250px;height: 35px"
                 placeholder="请输入手机号注册账户"
-                v-model="input3"
+                v-model="signData.account"
                 clearable>
             </el-input>
           </div>
@@ -44,7 +44,7 @@
             <el-input
                 style="width: 250px;height: 35px;"
                 placeholder="请设置密码"
-                v-model="input4"
+                v-model="signData.password"
                 show-password>
             </el-input>
           </div>
@@ -53,12 +53,14 @@
             <el-input
                 style="width: 250px;height: 35px;"
                 placeholder="请再次输入密码确认"
-                v-model="input5"
+                v-model="signData.passwordTo"
                 show-password>
             </el-input>
           </div>
           <div>
-            <el-button type="warning" style="margin-left: 180px;margin-top:10px;width: 100px">注册</el-button>
+            <el-button type="warning" style="margin-left: 180px;margin-top:10px;width: 100px"
+            @click="Sign"
+            >注册</el-button>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -78,15 +80,24 @@ import store from "@/store";
             .then((res)=>{
               if(res.data.flag){
                 this.$message.success(res.data.msg);
-                store.commit("setId",res.data.data.id);
-                this.$message.info("info"+store.state.userId);
+                store.commit("set",res.data.data.id);
+                // this.$message.info("info:"+store.state.userId);
                 router.push('/Home')
               }else{
                 this.$message.error(res.data.msg)
               }
             }).finally()
-      } ,
-
+      },
+      Sign(){
+        axios.post("http://localhost:8081/Sign",this.signData)
+            .then((res)=>{
+              if(res.data.flag){
+                this.$message.success(res.data.msg);
+              }else{
+                this.$message.error(res.data.msg)
+              }
+            }).finally()
+      },
     },
     data() {
       return {
@@ -94,9 +105,11 @@ import store from "@/store";
           account:'',
           password:'',
         },
-        input3: '',
-        input4: '',
-        input5: '',
+        signData:{
+          account: '',
+          password: '',
+          passwordTo: '',
+        },
       }
     }
   }
@@ -110,7 +123,6 @@ import store from "@/store";
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
-
 }
 .el-tabs{
   width: 500px;
