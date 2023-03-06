@@ -13,7 +13,7 @@ public interface UserDao extends BaseMapper<User> {
     @Select("select id from User where account = #{account}")
     Integer selectByAccount(String account);
     //查询账号密码是否正确，并返回用户id
-    @Select("select id,privileges from User where account = #{account} and password = #{password}")
+    @Select("select * from User where account = #{account} and password = #{password}")
     User selectByAccountPassword(String account,String password);
     @Insert("INSERT INTO `user`(`name`,account,`password`,`privileges`) VALUES ('default_userName',#{account},#{password},1)")
     Integer insertAccountPassword(String account,String password);

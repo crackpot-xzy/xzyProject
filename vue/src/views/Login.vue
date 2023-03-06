@@ -80,7 +80,7 @@ import store from "@/store";
             .then((res)=>{
               if(res.data.flag){
                 this.$message.success(res.data.msg);
-                store.commit("set",res.data.data.id);
+                store.commit("set",res.data.data);
                 // this.$message.info("info:"+store.state.userId);
                 router.push('/Home')
               }else{

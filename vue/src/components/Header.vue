@@ -12,7 +12,9 @@
       :default-active="$route.path"
   >
     <el-menu-item index="/home"><el-icon><HomeFilled /></el-icon>首页</el-menu-item>
-    <el-menu-item index="/Person"><el-icon><UserFilled /></el-icon>个人信息</el-menu-item>
+    <el-menu-item index="/Person">
+      <el-icon><UserFilled /></el-icon>个人信息
+    </el-menu-item>
     <el-menu-item index="/upload"><el-icon><UploadFilled /></el-icon>信息采集</el-menu-item>
     <el-menu-item index="/Search"><el-icon><Histogram /></el-icon>数据查询</el-menu-item>
     <el-menu-item index="/Analysis"><el-icon><Platform /></el-icon>舆情分析</el-menu-item>

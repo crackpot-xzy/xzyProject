@@ -1,12 +1,13 @@
 <template>
   <Header></Header>
   <h2>个人信息</h2>
+  <div :model="person">
   <div style="display: flex;justify-content: center;margin-top: 30px">
     <h4>昵称：</h4>
     <el-input
         style="width: 250px;height: 35px"
         placeholder=""
-        v-model="input1"
+        v-model="person.name"
         clearable>
     </el-input>
   </div>
@@ -15,7 +16,7 @@
     <el-input disabled
         style="width: 250px;height: 35px"
         placeholder=""
-        v-model="input1"
+        v-model="person.account"
         clearable>
     </el-input>
   </div>
@@ -24,7 +25,7 @@
     <el-input
         style="width: 250px;height: 35px"
         placeholder=""
-        v-model="input1"
+        v-model="person.password"
         clearable>
     </el-input>
   </div>
@@ -33,7 +34,7 @@
     <el-input
         style="width: 250px;height: 35px"
         placeholder=""
-        v-model="input1"
+        v-model="person.address"
         clearable>
     </el-input>
   </div>
@@ -42,29 +43,37 @@
     <el-input
         style="width: 250px;height: 35px"
         placeholder=""
-        v-model="input1"
+        v-model="person.email"
         clearable>
     </el-input>
   </div>
-  <el-button type="primary" style=" margin-left:690px;margin-top:15px;margin-bottom:180px;width: 100px">修改</el-button>
+  <div style="text-align: center">
+    <el-button type="primary" style="margin-top:15px;margin-bottom:180px; width: 100px">修改</el-button>
+  </div>
+  </div>
   <Footer></Footer>
 </template>
 
 <script>
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import store from "@/store";
 export default {
   name: "Person",
   components: {Footer,Header},
   data(){
     return{
-      input1:'',
-      input2:'',
-      input3:'',
-      input4:'',
-      input5:'',
-
+      person:{
+        name:store.state.name,
+        password:store.state.password,
+        account:store.state.account,
+        address:store.state.address,
+        email:store.state.email,
+      },
     }
+  },
+  methods:{
+
   }
 }
 </script>
