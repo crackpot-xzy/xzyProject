@@ -1,0 +1,124 @@
+<template >
+  <h1>基于自然语言处理的网络舆情分析系统</h1>
+    <div id="main">
+      <el-tabs type="border-card">
+        <el-tab-pane ref="login" :model="formData" label="登录">
+          <div style="display: flex;justify-content: center;margin-top: 40px">
+            <h4>账号：</h4>
+            <el-input
+                style="width: 250px;height: 35px"
+                placeholder="请输入账号"
+                v-model="formData.account"
+                clearable>
+            </el-input>
+          </div>
+          <div style="display: flex;justify-content: center;margin-top: 10px">
+            <h4>密码：</h4>
+            <el-input
+                style="width: 250px;height: 35px;"
+                placeholder="请输入密码"
+                v-model="formData.password"
+                show-password>
+            </el-input>
+          </div>
+
+          <div>
+            <el-button type="warning" style="margin-left: 180px;margin-top:30px;width: 100px"
+            @click="Login"
+            >登录</el-button>
+          </div>
+        </el-tab-pane>
+
+        <el-tab-pane label="注册">
+          <div style="display: flex;justify-content: center;margin-top: 20px">
+            <h4>账号：</h4>
+            <el-input
+                style="width: 250px;height: 35px"
+                placeholder="请输入手机号注册账户"
+                v-model="input3"
+                clearable>
+            </el-input>
+          </div>
+          <div style="display: flex;justify-content: center;margin-top: 10px">
+            <h4>密码：</h4>
+            <el-input
+                style="width: 250px;height: 35px;"
+                placeholder="请设置密码"
+                v-model="input4"
+                show-password>
+            </el-input>
+          </div>
+          <div style="display: flex;justify-content: center;margin-top: 10px">
+            <h4>确认：</h4>
+            <el-input
+                style="width: 250px;height: 35px;"
+                placeholder="请再次输入密码确认"
+                v-model="input5"
+                show-password>
+            </el-input>
+          </div>
+          <div>
+            <el-button type="warning" style="margin-left: 180px;margin-top:10px;width: 100px">注册</el-button>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+</template >
+
+<script >
+import router from "@/router";
+import axios from "axios";
+// const axios = require('axios');
+  export default {
+     name: "Login",
+    methods:{
+      Login(){
+        axios.post("http://localhost:8081/Login",this.formData)
+            .then((res)=>{
+              if(res.data.flag){
+                router.push('/Home')
+              }else if(res.data.flag==false){
+                this.$message.info("请输入正确的账号密码")
+              }
+            }).finally()
+      } ,
+
+    },
+    data() {
+      return {
+        formData:{
+          account:'',
+          password:'',
+        },
+        input3: '',
+        input4: '',
+        input5: '',
+      }
+    }
+  }
+</script>
+
+<style scoped>
+#main{
+  width: 500px;
+  height: 350px;
+  margin-top: 10px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.el-tabs{
+  width: 500px;
+  height: 350px;
+}
+h1{
+  margin-top: 120px;
+  text-align: center;
+  color: burlywood;
+}
+h4{
+  margin-top: 5px;
+  color: burlywood;
+}
+</style>
