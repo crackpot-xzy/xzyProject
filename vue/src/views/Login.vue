@@ -76,9 +76,10 @@ import axios from "axios";
         axios.post("http://localhost:8081/Login",this.formData)
             .then((res)=>{
               if(res.data.flag){
+                this.$message.success(res.data.msg),
                 router.push('/Home')
-              }else if(res.data.flag==false){
-                this.$message.info("请输入正确的账号密码")
+              }else{
+                this.$message.error(res.data.msg)
               }
             }).finally()
       } ,

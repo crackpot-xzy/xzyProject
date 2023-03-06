@@ -14,7 +14,6 @@ public class LoginController {
 
     @PostMapping
     public R get(@RequestBody User user){
-        return new R(loginService.Login(user));
-//        return new R(false);
+        return loginService.Login(user);
     }
 }

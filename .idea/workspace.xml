@@ -78,7 +78,7 @@
       <recent name="com.xzy.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringbootApplication">
+  <component name="RunManager" selected="npm.serve">
     <configuration name="Tests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot" />
       <extension name="coverage">
@@ -145,17 +145,15 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.Tests" />
+      <item itemvalue="JUnit.Tests.testGetById" />
+      <item itemvalue="JUnit.Tests.testGetById2" />
       <item itemvalue="npm.serve" />
       <item itemvalue="Spring Boot.SpringbootApplication" />
-      <item itemvalue="JUnit.UserTests.testGetById" />
-      <item itemvalue="JUnit.UserTests" />
-      <item itemvalue="JUnit.UserTests.testGetById2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserTests.testGetById2" />
-        <item itemvalue="JUnit.UserTests.testGetById" />
-        <item itemvalue="JUnit.UserTests" />
+        <item itemvalue="JUnit.Tests.testGetById" />
       </list>
     </recent_temporary>
   </component>
@@ -174,6 +172,7 @@
       <workItem from="1677400545056" duration="49997000" />
       <workItem from="1677648254860" duration="7494000" />
       <workItem from="1677662018090" duration="93394000" />
+      <workItem from="1678069062959" duration="7931000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,7 @@
 package com.xzy.service.impl.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzy.controller.utils.R;
 import com.xzy.dao.UserDao;
 import com.xzy.domain.User;
 import com.xzy.service.impl.LoginService;
@@ -14,13 +15,18 @@ public class LoginServiceImpl extends ServiceImpl<UserDao, User> implements Logi
     @Autowired
     private UserDao userDao;
 
+
     @Override
-    public Boolean Login(User user) {
-        Integer result=userDao.selectByAccount(user.getAccount(),user.getPassword());
-        if(result==null){
-            return false;
+    public R Login(User user) {
+        if(userDao.selectByAccount(user.getAccount())==null){
+            return new R(false,null,"账号不存在");
         }else{
-            return true;
+            User u = userDao.selectByAccountPassword(user.getAccount(),user.getPassword());
+            if (u==null){
+                return new R(false,null,"密码错误");
+            }else{
+                return new R(true,u,null);
+            }
         }
     }
 }

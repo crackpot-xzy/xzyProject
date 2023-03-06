@@ -9,17 +9,13 @@ public class R {
     private String msg;
 
     public R(){
+
     }
 
-    //成功
-    public R(Object data){
-        this.flag = true;
+    public R(Boolean flag,Object data,String msg){
+        this.flag = flag;
         this.data = data;
-    }
-
-    //异常
-    public R(String msg){
-        this.flag = false;
         this.msg = msg;
     }
+
 }

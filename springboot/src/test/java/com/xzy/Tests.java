@@ -11,16 +11,11 @@ class Tests {
 
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private TableDao tableDao;
 
     @Test
     void testGetById(){
-        System.out.println("这是结果------》"+userDao.selectById(1));
+//        System.out.println("这是结果------》"+userDao.selectByAccount(100001,"root"));
     }
-    @Test
-    void testGetById2(){
-        System.out.println("这是结果------》"+tableDao.selectById(1));
-    }
+
 
 }

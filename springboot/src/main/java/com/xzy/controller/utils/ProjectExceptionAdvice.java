@@ -10,6 +10,6 @@ public class ProjectExceptionAdvice {
     @ExceptionHandler(Exception.class)
     public R doException(Exception ex){
         ex.printStackTrace();
-        return new R("服务器异常");
+        return new R(false,null,"服务器异常");
     }
 }
