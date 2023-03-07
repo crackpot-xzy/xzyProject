@@ -1,21 +1,21 @@
 package com.xzy;
 
-import com.xzy.dao.TableDao;
 import com.xzy.dao.UserDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @SpringBootTest
 class Tests {
 
-    @Autowired
-    private UserDao userDao;
-
     @Test
-    void testGetById(){
-//        System.out.println("这是结果------》"+userDao.selectByAccount(100001,"root"));
+    void testtime(){
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println("结果=====》"+formatter.format(date));
     }
-
 
 }

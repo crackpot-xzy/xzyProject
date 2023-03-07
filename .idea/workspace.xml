@@ -47,6 +47,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -74,6 +75,8 @@
       <recent name="B:\gitProject\myProject\myRepository\vue\src\views" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xzy.service.impl.impl" />
+      <recent name="com.xzy.service.impl" />
       <recent name="com.xzy.controller" />
       <recent name="com.xzy.dao" />
     </key>
@@ -126,6 +129,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Tests.testtime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xzy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.xzy" />
+      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
+      <option name="METHOD_NAME" value="testtime" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="springboot" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.xzy.SpringbootApplication" />
@@ -150,9 +169,11 @@
       <item itemvalue="JUnit.Tests.testGetById2" />
       <item itemvalue="npm.serve" />
       <item itemvalue="Spring Boot.SpringbootApplication" />
+      <item itemvalue="JUnit.Tests.testtime" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests.testtime" />
         <item itemvalue="JUnit.Tests.testGetById" />
       </list>
     </recent_temporary>
@@ -173,7 +194,7 @@
       <workItem from="1677648254860" duration="7494000" />
       <workItem from="1677662018090" duration="93394000" />
       <workItem from="1678069062959" duration="15224000" />
-      <workItem from="1678091160068" duration="25467000" />
+      <workItem from="1678091160068" duration="35405000" />
     </task>
     <servers />
   </component>

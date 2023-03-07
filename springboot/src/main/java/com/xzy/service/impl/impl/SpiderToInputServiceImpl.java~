@@ -1,0 +1,23 @@
+package com.xzy.service.impl.impl;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzy.controller.utils.R;
+import com.xzy.dao.InputDao;
+import com.xzy.domain.Input;
+import com.xzy.service.impl.SpiderToInputService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SpiderToInputServiceImpl extends ServiceImpl<InputDao, Input> implements SpiderToInputService {
+
+    @Autowired
+    InputDao inputDao;
+    @Override
+    public R toInput() {
+        if (inputDao.SpiderToInput()==null){
+            return new R(false,null,"")
+        }
+        return null;
+    }
+}

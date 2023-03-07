@@ -6,12 +6,12 @@
     >
       <el-tab-pane label="人工输入">
 
-        <div style="display: flex;justify-content: center;margin-top: 70px">
+        <div style="display: flex;justify-content: center;margin-top: 70px" :model="inputByU">
           <h4>文本：</h4>
           <el-input
               style="width: 250px;height: 35px;"
               placeholder="请输入文本信息"
-              v-model="input1"
+              v-model="inputByU.text"
               clearable>
           </el-input>
         </div>
@@ -20,7 +20,7 @@
           <el-input
               style="width: 250px;height: 35px;"
               placeholder="点赞数"
-              v-model="input2"
+              v-model="inputByU.attitudes"
               clearable>
           </el-input>
         </div>
@@ -29,7 +29,7 @@
           <el-input
               style="width: 250px;height: 35px;"
               placeholder="评论数"
-              v-model="input3"
+              v-model="inputByU.comments"
               clearable>
           </el-input>
         </div>
@@ -38,7 +38,7 @@
           <el-input
               style="width: 250px;height: 35px;"
               placeholder="转发数"
-              v-model="input4"
+              v-model="inputByU.reposts"
               clearable>
           </el-input>
         </div>
@@ -62,9 +62,9 @@
         <div style="margin-top: 100px">
         <h4>系统支持爬虫脚本自动爬取网页数据。</h4>
         <h4>如：可在weiboSpider目录的settings.py文件中进行相应配置，
-          并在该目录下运行‘scrapy crawl search’命令，程序将会把爬取的微博数据直接写入数据库中，点击下方按钮会将爬取的数据导入当前用户的数据表中。</h4>
+          并在该目录下运行‘scrapy crawl search’命令，程序将会把爬取的微博数据直接写入数据库中，点击下方按钮会将爬取的数据导入待处理的数据表中。</h4>
           <div>
-            <el-button type="primary" style="margin-left: 280px;margin-bottom:10px;width: 100px">导入爬取数据</el-button>
+            <el-button type="primary" style="margin-left: 280px;margin-bottom:10px;width: 100px" @click="spiderTo">导入爬取数据</el-button>
           </div>
           <h4 >（用户也可根据需求自行配置相应脚本程序。）</h4>
         </div>
@@ -77,19 +77,34 @@
 <script>
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import axios from "axios";
+import store from "@/store";
+import router from "@/router";
 
 export default {
   name: "Upload",
   components: {Footer,Header},
   data(){
     return{
-      input1: '',
-      input2: '',
-      input3: '',
-      input4: '',
+      inputByU:{
+        text: '',
+        attitudes: '',
+        comments: '',
+        reposts: '',
+      }
+    }
+  },
+  methods:{
+    spiderTo(){
+      axios.get("http://localhost:8081/Upload/SpiderTo")
+          .then((res)=>{
+              this.$message.success(res.data.msg);
+          }).finally()
+    },
+    userTo(){
+      // axios.post()
     }
   }
-
 }
 </script>
 
