@@ -16,6 +16,15 @@
           </el-input>
         </div>
         <div style="display: flex;justify-content: center;margin-top: 5px">
+          <h4>编号：</h4>
+          <el-input
+              style="width: 250px;height: 35px;"
+              placeholder="文本编号"
+              v-model="inputByU.id"
+              clearable>
+          </el-input>
+        </div>
+        <div style="display: flex;justify-content: center;margin-top: 5px">
           <h4>点赞：</h4>
           <el-input
               style="width: 250px;height: 35px;"
@@ -96,6 +105,7 @@ export default {
   data(){
     return{
       inputByU:{
+        id:'',
         text: '',
         attitudes:'0',
         comments: '0',

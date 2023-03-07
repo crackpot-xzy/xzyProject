@@ -14,6 +14,6 @@ public interface InputDao extends BaseMapper<Input> {
             "SELECT weibo.id,weibo.text,weibo.location,weibo.attitudes_count,weibo.comments_count,weibo.reposts_count,weibo.created_at FROM weibo WHERE NOT EXISTS(SELECT * FROM input WHERE input.id=weibo.id)")
     int SpiderToInput();
 
-    @Insert("INSERT INTO input(input.id,input.text,input.attitudes_count,input.comments_count,input.reposts_count,input.created_at) VALUES ('default_id',#{text},#{att},#{com},#{rep},#{tim})")
-    int UserToInput(String text, String att, String com, String rep,String tim);
+    @Insert("INSERT INTO input(input.id,input.text,input.attitudes_count,input.comments_count,input.reposts_count,input.created_at) VALUES (#{id},#{text},#{att},#{com},#{rep},#{tim})")
+    int UserToInput(String text, String att, String com, String rep,String tim,String id);
 }

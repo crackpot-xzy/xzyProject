@@ -11,4 +11,5 @@ public class UserInputDto {
     private String comments;
     private String reposts;
     private String time;
+    private String id;
 }
