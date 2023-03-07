@@ -15,5 +15,5 @@ public interface InputDao extends BaseMapper<Input> {
     int SpiderToInput();
 
     @Insert("INSERT INTO input(input.id,input.text,input.attitudes_count,input.comments_count,input.reposts_count,input.created_at) VALUES ('default_id',#{text},#{att},#{com},#{rep},#{tim})")
-    int UserToInput(String text, int att, int com, int rep, Date tim);
+    int UserToInput(String text, String att, String com, String rep,String tim);
 }

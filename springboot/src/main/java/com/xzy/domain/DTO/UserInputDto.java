@@ -2,10 +2,13 @@ package com.xzy.domain.DTO;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserInputDto {
     private String text;
-    private int attitudes;
-    private int comments;
-    private int reposts;
+    private String attitudes;
+    private String comments;
+    private String reposts;
+    private String time;
 }

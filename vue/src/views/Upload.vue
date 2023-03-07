@@ -6,7 +6,7 @@
     >
       <el-tab-pane label="人工输入">
 
-        <div style="display: flex;justify-content: center;margin-top: 70px" :model="inputByU">
+        <div style="display: flex;justify-content: center;margin-top: 30px" :model="inputByU">
           <h4>文本：</h4>
           <el-input
               style="width: 250px;height: 35px;"
@@ -42,8 +42,17 @@
               clearable>
           </el-input>
         </div>
+        <div style="display: flex;justify-content: center;margin-top: 5px">
+          <h4>时间：</h4>
+          <el-input
+              style="width: 250px;height: 35px;"
+              placeholder="时间"
+              v-model="inputByU.time"
+              clearable>
+          </el-input>
+        </div>
         <div>
-          <el-button type="primary" style="margin-left: 280px;margin-top:30px;width: 100px">确认</el-button>
+          <el-button type="primary" style="margin-left: 280px;margin-top:30px;width: 100px" @click="userTo">确认</el-button>
         </div>
       </el-tab-pane>
       <el-tab-pane label="表格导入">
@@ -88,9 +97,10 @@ export default {
     return{
       inputByU:{
         text: '',
-        attitudes: '',
-        comments: '',
-        reposts: '',
+        attitudes:'0',
+        comments: '0',
+        reposts: '0',
+        time:'',
       }
     }
   },
@@ -102,7 +112,13 @@ export default {
           }).finally()
     },
     userTo(){
-      // axios.post()
+      axios.post("http://localhost:8081/Upload/UserTo",this.inputByU).then((res)=>{
+        if(res.data.flag){
+          this.$message.success(res.data.msg);
+        }else{
+          this.$message.error(res.data.msg);
+        }
+      }).finally()
     }
   }
 }
