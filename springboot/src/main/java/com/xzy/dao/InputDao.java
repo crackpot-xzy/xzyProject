@@ -2,6 +2,7 @@ package com.xzy.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xzy.domain.Input;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,4 +21,7 @@ public interface InputDao extends BaseMapper<Input> {
     @Insert("INSERT INTO input(id,text,attitudes_count,comments_count,reposts_count,created_at,location) " +
             "VALUES(#{id},#{t},#{a},#{c},#{r},#{tim},#{l})")
     int FileToInput(String id,String t,Integer a,Integer c,Integer r,String tim,String l);
+
+    @Delete("DELETE FROM input")
+    int DeleteAll();
 }
