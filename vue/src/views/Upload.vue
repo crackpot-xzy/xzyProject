@@ -19,7 +19,7 @@
           <h4>编号：</h4>
           <el-input
               style="width: 250px;height: 35px;"
-              placeholder="文本编号"
+              placeholder="请输入文本编号"
               v-model="inputByU.id"
               clearable>
           </el-input>
@@ -28,7 +28,7 @@
           <h4>点赞：</h4>
           <el-input
               style="width: 250px;height: 35px;"
-              placeholder="点赞数"
+              placeholder="请输入点赞数"
               v-model="inputByU.attitudes"
               clearable>
           </el-input>
@@ -37,7 +37,7 @@
           <h4>评论：</h4>
           <el-input
               style="width: 250px;height: 35px;"
-              placeholder="评论数"
+              placeholder="请输入评论数"
               v-model="inputByU.comments"
               clearable>
           </el-input>
@@ -46,7 +46,7 @@
           <h4>转发：</h4>
           <el-input
               style="width: 250px;height: 35px;"
-              placeholder="转发数"
+              placeholder="请输入转发数"
               v-model="inputByU.reposts"
               clearable>
           </el-input>
@@ -55,7 +55,7 @@
           <h4>时间：</h4>
           <el-input
               style="width: 250px;height: 35px;"
-              placeholder="时间"
+              placeholder="请输入时间"
               v-model="inputByU.time"
               clearable>
           </el-input>

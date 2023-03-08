@@ -4,12 +4,14 @@
     <el-date-picker
         style="margin-top: 20px;margin-left: 80px;margin-bottom: -10px"
         v-model="time"
-        type="daterange"
+        value-format="YYYY-MM-DD hh:mm:ss"
+        type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
-        end-placeholder="结束日期">
+        end-placeholder="结束日期"
+    >
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px">查询</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectDate">查询</el-button>
     <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="deleteDate"><el-icon><DeleteFilled /></el-icon>清空数据</el-button>
   </div>
   <el-table
@@ -54,7 +56,8 @@ export default {
   components: {Footer, Header},
   data() {
     return {
-      time: '',
+      time: {
+      },
       tableData: [
           {
         date: '2016-05-02',
@@ -78,7 +81,7 @@ export default {
       return index+1;
     },
     selectDate(){
-      axios.get("http://localhost:8081/")
+      axios.post("http://localhost:8081/Search/selectDate",this.time)
           .then((res)=>{
             this.$message.success(res.data.msg);
           }).finally()
