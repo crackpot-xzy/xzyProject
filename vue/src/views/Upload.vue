@@ -69,7 +69,9 @@
             style="margin-top: 100px;width: 350px;margin-left: 160px"
             class="upload-demo"
             drag
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="http://localhost:8081/Upload/CsvTo"
+            :on-success="handleUploadSuccess"
+            :file-list="fileList"
             multiple>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -111,7 +113,8 @@ export default {
         comments: '0',
         reposts: '0',
         time:'',
-      }
+      },
+      fileList:[],
     }
   },
   methods:{
@@ -129,7 +132,15 @@ export default {
           this.$message.error(res.data.msg);
         }
       }).finally()
-    }
+    },
+    handleUploadSuccess(res) {
+      console.log(res);
+      if (res.flag) {
+        this.$message.success(res.msg)
+      } else {
+        this.$message.error(res.msg)
+      }
+    },
   }
 }
 </script>

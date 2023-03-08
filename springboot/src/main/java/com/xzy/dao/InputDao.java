@@ -16,4 +16,8 @@ public interface InputDao extends BaseMapper<Input> {
 
     @Insert("INSERT INTO input(input.id,input.text,input.attitudes_count,input.comments_count,input.reposts_count,input.created_at) VALUES (#{id},#{text},#{att},#{com},#{rep},#{tim})")
     int UserToInput(String text, String att, String com, String rep,String tim,String id);
+
+    @Insert("INSERT INTO input(id,text,attitudes_count,comments_count,reposts_count,created_at,location) " +
+            "VALUES(#{id},#{t},#{a},#{c},#{r},#{tim},#{l})")
+    int FileToInput(String id,String t,Integer a,Integer c,Integer r,String tim,String l);
 }
