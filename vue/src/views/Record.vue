@@ -9,7 +9,7 @@
         start-placeholder="开始日期"
         end-placeholder="结束日期">
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px">查询</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><CaretLeft /></el-icon>查询</el-button>
       <el-date-picker
           v-model="value2"
           type="date"
@@ -17,7 +17,8 @@
           :size="size"
           style="margin-left: 40px;margin-bottom: 5px;width:200px"
       />
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px">查询</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><CaretLeft /></el-icon>查询</el-button>
+    <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><List /></el-icon>查看全部</el-button>
   </div>
   <el-table
       :data="tableData"
@@ -58,7 +59,7 @@
   <el-pagination
       background
       layout="prev, pager, next"
-      style="margin-left: 500px;margin-top: 10px"
+      style="justify-content: center;margin-top: 10px"
       :total="1000">
   </el-pagination>
   <Footer></Footer>

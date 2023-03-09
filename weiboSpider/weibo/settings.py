@@ -13,7 +13,7 @@ DEFAULT_REQUEST_HEADERS = {
     'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
     # 'cookie': 'your cookie'
-    'cookie': 'SINAGLOBAL=2458960222367.4214.1676510733086; UOR=,,cn.bing.com; SCF=AsM4iOMT-YYcFD2c41TJE8OxTkgot2DSsdkcal5yFg0JmOfPp4f1heag21Gz8RRiMf8Oc716lPGA_AYL9wspphQ.; ALF=1679623316; SUB=_2A25O8QfEDeRhGeFN7lAR9ivLyTqIHXVqHamMrDV8PUJbkNAfLW_VkW1NQAWQJJGbYC_5ULKKhWAHzxxihGlPM5Wh; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWQZs1wxOwn9f0LZK4Jp3fs5JpX5oz75NHD95QNe0-EehqfS0zcWs4DqcjQi--4iKL2iK.0i--Xi-iFiK.Xi--NiKn4iKLFi--fi-2fi-zceo5p1Btt; _s_tentry=-; Apache=8307972344241.707.1677291995967; ULV=1677291995973:5:5:4:8307972344241.707.1677291995967:1677035243509; XSRF-TOKEN=u9AFw-fxv176Xm72pl1wBjlS; WBPSESS=n4CtO-4cf-D1vf6U3jJvLveYYIyArLXnEapZNTE97vSqs4wFBxSgkNJFhcSn1kGBVNNYhLbYHEt-LIBK3UTr4-d7TXgc1ERYlJS7deZVFIQ4w3bRF1oSCbeYZWETH56pAcQ27o7FqO9oTPvAq5ZUBg=='
+    'cookie': 'SINAGLOBAL=2458960222367.4214.1676510733086; UOR=,,cn.bing.com; XSRF-TOKEN=YjIeTFr4UWiwzIciNUChAMS1; _s_tentry=weibo.com; Apache=1290439360788.7354.1678328029906; ULV=1678328029967:6:1:1:1290439360788.7354.1678328029906:1677291995973; SCF=AsM4iOMT-YYcFD2c41TJE8OxTkgot2DSsdkcal5yFg0JGTzq61H9HsW1YhFkaTEmTbSJ_HdSVezxNyrTsqkTwlA.; SUB=_2A25JDTJfDeRhGeFN7lAR9ivLyTqIHXVqeySXrDV8PUNbmtAGLUzCkW9NQAWQJJ7U-oGk7tgRIDixUVFsskTtNKhA; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWQZs1wxOwn9f0LZK4Jp3fs5JpX5KzhUgL.FoM0SKz7So-Neoq2dJLoIEnLxK.L1-BL1KeLxKBLB.zL1KBLxKML1h.L1-zLxK-LBK-LBoqEeh24; ALF=1709864335; SSOLoginState=1678328335; WBPSESS=Dt2hbAUaXfkVprjyrAZT_EGmXW4ngCwfDH10SVduSkmSrtUZbKTWl3quL6OzuqLAypBf1xVjziE2F3r2WtS5SQlzgDrzcnhxhdgX4bEJC-37i1KH5VstzpL9B1Lo9X-r9nYcGXbMJPc50LZ98ah7_DXtgokkAEz_O_XsvjexvMoKoi7JvT6kJVuDAzya2D8A911gfYK0XdzWbJ1VH5NT4A=='
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
@@ -22,7 +22,7 @@ ITEM_PIPELINES = {
 }
 # 关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
-KEYWORD_LIST = ['狂飙']  # 或者 KEYWORD_LIST = 'keyword_list.txt'
+KEYWORD_LIST = ['杭州']  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
 WEIBO_TYPE = 1
 # 筛选结果微博中必需包含的内容，0代表不筛选，获取全部微博，1代表搜索包含图片的微博，2代表包含视频的微博，3代表包含音乐的微博，4代表包含短链接的微博
@@ -31,9 +31,9 @@ CONTAIN_TYPE = 0
 # 具体支持的地名见region.py文件，注意只支持省或直辖市的名字，省下面的市名及直辖市下面的区县名不支持，不筛选请用“全部”
 REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
-START_DATE = '2023-02-21'
+START_DATE = '2023-03-08'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
-END_DATE = '2023-02-21'
+END_DATE = '2023-03-08'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
 FURTHER_THRESHOLD = 46

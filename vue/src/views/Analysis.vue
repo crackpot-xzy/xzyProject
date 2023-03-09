@@ -9,8 +9,9 @@
         start-placeholder="开始日期"
         end-placeholder="结束日期">
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px">舆情分析</el-button>
-    <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 100px">分析结果保存</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><CaretLeft /></el-icon>条件分析</el-button>
+    <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><List /></el-icon>分析全部</el-button>
+    <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 120px"><el-icon><Management /></el-icon>分析结果保存</el-button>
 
   </div>
   <div style="height: 540px;display: flex;margin-top: 15px">

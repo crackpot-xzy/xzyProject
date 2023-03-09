@@ -96,70 +96,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests.dateStrIsValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.xzy" />
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <option name="METHOD_NAME" value="dateStrIsValid(java.lang.String,java.lang.String)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.testGetById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.xzy" />
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <option name="METHOD_NAME" value="testGetById" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.testGetById2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.xzy" />
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <option name="METHOD_NAME" value="testGetById2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.testtime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.xzy" />
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <option name="METHOD_NAME" value="testtime" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="springboot" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.xzy.SpringbootApplication" />
@@ -179,20 +115,13 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.Tests.testGetById" />
-      <item itemvalue="JUnit.Tests.testGetById2" />
+      <item itemvalue="Application.Tests" />
       <item itemvalue="npm.serve" />
       <item itemvalue="Spring Boot.SpringbootApplication" />
-      <item itemvalue="JUnit.Tests.testtime" />
-      <item itemvalue="JUnit.Tests.dateStrIsValid" />
-      <item itemvalue="Application.Tests" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Tests" />
-        <item itemvalue="JUnit.Tests.dateStrIsValid" />
-        <item itemvalue="JUnit.Tests.testtime" />
-        <item itemvalue="JUnit.Tests.testGetById" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +141,7 @@
       <workItem from="1677648254860" duration="7494000" />
       <workItem from="1677662018090" duration="93394000" />
       <workItem from="1678069062959" duration="15224000" />
-      <workItem from="1678091160068" duration="77222000" />
+      <workItem from="1678091160068" duration="98642000" />
     </task>
     <servers />
   </component>
@@ -227,6 +156,10 @@
           <line>449</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.web.method.annotation.MethodArgumentTypeMismatchException" package="org.springframework.web.method.annotation" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
