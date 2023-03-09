@@ -11,7 +11,7 @@
         end-placeholder="结束日期"
     >
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click=""><el-icon><CaretLeft /></el-icon>条件查询</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectDateByTime"><el-icon><CaretLeft /></el-icon>条件查询</el-button>
     <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectAllDate"><el-icon><List /></el-icon>查询全部</el-button>
     <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="deleteDate"><el-icon><DeleteFilled /></el-icon>清空数据</el-button>
   </div>
@@ -64,6 +64,7 @@ export default {
     return {
       time: {
       },
+      flag:0,
       tableData: [],
       pagination: {//分页相关模型数据
         currentPage: 1,//当前页码
@@ -80,13 +81,25 @@ export default {
     },
     //根据时间分页查询
     selectAllDate(){
+        this.flag=0;
         axios.get("http://localhost:8081/Search/selectDate/"+this.pagination.currentPage+"/"+this.pagination.pageSize)
             .then((res)=>{
               this.tableData = res.data.data.records;
               console.log(res.data.data);
               this.pagination.currentPage = res.data.data.current;
               this.pagination.total = res.data.data.total;
-              this.$message.success(res.data.msg)
+              // this.$message.success(res.data.msg)
+            }).finally()
+    },
+    selectDateByTime(){
+        this.flag=1;
+        axios.get("http://localhost:8081/Search/selectDate/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time)
+            .then((res)=>{
+              this.tableData = res.data.data.records;
+              console.log(res.data.data);
+              this.pagination.currentPage = res.data.data.current;
+              this.pagination.total = res.data.data.total;
+              // this.$message.success(res.data.msg)
             }).finally()
     },
     deleteDate(){
@@ -100,7 +113,12 @@ export default {
       //修改页码值为当前选中的页码值
       this.pagination.currentPage = currentPage;
       //执行查询
-      this.selectAllDate();
+      if (this.flag===0){
+        this.selectAllDate();
+      }else{
+        this.selectDateByTime();
+      }
+
     },
   }
 }
