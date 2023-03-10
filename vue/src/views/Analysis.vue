@@ -3,13 +3,14 @@
   <div class="block">
     <el-date-picker
         style="margin-top: 20px;margin-left: 80px;margin-bottom: -10px"
-        v-model="value1"
-        type="daterange"
+        v-model="time"
+        value-format="YYYY-MM-DD hh:mm:ss"
+        type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
         end-placeholder="结束日期">
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px"><el-icon><CaretLeft /></el-icon>条件分析</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="getAllKeyWordsByTime"><el-icon><CaretLeft /></el-icon>条件分析</el-button>
     <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="getAll"><el-icon><List /></el-icon>分析全部</el-button>
     <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 120px"><el-icon><Management /></el-icon>分析结果保存</el-button>
 
@@ -32,8 +33,7 @@ export default {
   components: {Footer, Header},
   data() {
     return {
-      value1: '',
-      dataList: [],
+      time: '',
     }
   },
 
@@ -46,7 +46,6 @@ export default {
       axios.get("http://localhost:8081/Analysis/all")
           .then((res) => {
             console.log(res.data);
-            this.dataList = res.data.data;
             this.$message.success(res.data.msg);
             this.initCloudEcharts(res.data.data);
             this.initPieEcharts(res.data.data);
@@ -54,7 +53,7 @@ export default {
     },
     getAllKeyWordsByTime() {
       this.$message.info("进行中...");
-      axios.get("http://localhost:8081/Analysis/byTime/")
+      axios.get("http://localhost:8081/Analysis/byTime/"+this.time)
           .then((res) => {
             console.log(res.data);
             this.dataList = res.data.data;
