@@ -55,18 +55,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/src/main/java/com/xzy/controller/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/src/main/java/com/xzy/service/HanlpEmo" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="B:\JetBrains\IntelliJ IDEA 2021.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="B:\gitProject\xzyProject\springboot\src\main\java\com\xzy\service\HanlpEmo" />
       <recent name="B:\gitProject\myProject\springboot\src\main\java\com\xzy\controller\utils" />
       <recent name="B:\gitProject\myProject\vue\src\views" />
       <recent name="B:\gitProject\myProject\vue\src\assets" />
       <recent name="B:\gitProject\myProject\myRepository\vue\src\router" />
-      <recent name="B:\gitProject\myProject\myRepository\vue\src\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="B:\gitProject\myProject\vue\src\assets" />
@@ -82,7 +82,7 @@
       <recent name="com.xzy.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringbootApplication">
+  <component name="RunManager" selected="JUnit.Tests.test">
     <configuration name="Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
       <module name="springboot" />
@@ -107,6 +107,22 @@
       <option name="PACKAGE_NAME" value="com.xzy" />
       <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
       <option name="METHOD_NAME" value="keyWords" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xzy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.xzy" />
+      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,9 +168,11 @@
       <item itemvalue="JUnit.Tests.testhanlp" />
       <item itemvalue="npm.serve" />
       <item itemvalue="Spring Boot.SpringbootApplication" />
+      <item itemvalue="JUnit.Tests.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests.test" />
         <item itemvalue="JUnit.Tests.testhanlp" />
         <item itemvalue="JUnit.Tests.keyWords" />
         <item itemvalue="Application.Tests" />
@@ -181,7 +199,7 @@
       <workItem from="1678418818518" duration="2812000" />
       <workItem from="1678423818145" duration="7535000" />
       <workItem from="1678431640481" duration="1866000" />
-      <workItem from="1678433707577" duration="12319000" />
+      <workItem from="1678433707577" duration="17180000" />
     </task>
     <servers />
   </component>

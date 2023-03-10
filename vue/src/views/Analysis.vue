@@ -19,7 +19,11 @@
 <!--    margin-right: auto;margin-left: auto-->
     <div id="echartsWordcloud" style="height: 540px;width: 800px;"></div>
     <div id="echartsPie" style="height: 540px;width: 800px;"></div>
-<!--    <div style="background-color: paleturquoise;height: 540px;width: 500px"></div>-->
+  </div>
+  <div style="height: 540px;display: flex;margin-top: 15px">
+    <!--    margin-right: auto;margin-left: auto-->
+    <div id="1" style="background-color: darkblue;height: 540px;width: 800px;"></div>
+    <div id="2" style="background-color:dimgray;height: 540px;width: 800px;"></div>
   </div>
   <Footer></Footer>
 </template>

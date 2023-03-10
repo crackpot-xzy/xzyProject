@@ -3,8 +3,8 @@ package com.xzy.controller;
 import com.xzy.controller.utils.R;
 import com.xzy.domain.DTO.SignDto;
 import com.xzy.domain.User;
-import com.xzy.service.impl.LoginService;
-import com.xzy.service.impl.SignService;
+import com.xzy.service.LoginService;
+import com.xzy.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
