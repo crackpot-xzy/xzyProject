@@ -82,7 +82,7 @@
       <recent name="com.xzy.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringbootApplication">
+  <component name="RunManager" selected="JUnit.Tests.keyWords">
     <configuration name="Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
       <module name="springboot" />
@@ -92,6 +92,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.keyWords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xzy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.xzy" />
+      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
+      <option name="METHOD_NAME" value="keyWords" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -118,9 +134,11 @@
       <item itemvalue="Application.Tests" />
       <item itemvalue="npm.serve" />
       <item itemvalue="Spring Boot.SpringbootApplication" />
+      <item itemvalue="JUnit.Tests.keyWords" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests.keyWords" />
         <item itemvalue="Application.Tests" />
       </list>
     </recent_temporary>
@@ -141,7 +159,7 @@
       <workItem from="1677648254860" duration="7494000" />
       <workItem from="1677662018090" duration="93394000" />
       <workItem from="1678069062959" duration="15224000" />
-      <workItem from="1678091160068" duration="100599000" />
+      <workItem from="1678091160068" duration="112456000" />
     </task>
     <servers />
   </component>
