@@ -2,10 +2,13 @@ package com.xzy.service.impl.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hankcs.hanlp.HanLP;
 import com.xzy.controller.utils.R;
 import com.xzy.dao.InputDao;
 import com.xzy.domain.DTO.KeyWordDataDto;
+import com.xzy.domain.DTO.NameValueDto;
 import com.xzy.domain.Input;
 import com.xzy.service.impl.KeyWordService;
 import org.apache.http.NameValuePair;
@@ -20,23 +23,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class KeyWordServiceImpl extends ServiceImpl<InputDao, Input> implements KeyWordService {
     @Autowired
     InputDao inputDao;
+
+    /*API调用方式，需要付费，放弃使用该方法*/
     @Override
-    public R getAllKeyWords() {
+    public R getAllKeyWordsAPI() {
         //请求头中的token
         String token="98f0c8879f014018bf2ae7ebb895b4011678370438934token";
         //申请的接口地址
         String url="http://comdo.hanlp.com/hanlp/v1/keyword/extract";
+        //数据层操作
         List<Input> ListInput = inputDao.selectList(null);
-        List<String> res = new ArrayList<>();//所有关键字的结果数组
+
+        Map<String,Integer> res = new HashMap<>();//所有关键字的结果数组,进行词频统计
         for (int i = 0; i < ListInput.size(); i++) {
             //所有参数
             Map<String,Object> params=new HashMap<String,Object>();
@@ -49,11 +53,103 @@ public class KeyWordServiceImpl extends ServiceImpl<InputDao, Input> implements 
             JSONArray arrJson = obj.getJSONArray("data");//取出对象中对应的data元素
             List<KeyWordDataDto> arrJava = arrJson.toJavaList(KeyWordDataDto.class);
             for (int j = 0; j < arrJava.size(); j++) {
-                res.add(arrJava.get(j).getWord());//依次取出关键词写入
+                if(res.get(arrJava.get(j).getWord())==null){//map中没有该关键词
+                    res.put(arrJava.get(j).getWord(),1);
+                }else{
+                    Integer value = res.get(arrJava.get(j).getWord())+1;
+                    res.put(arrJava.get(j).getWord(),value);
+                }
             }
+        }
+        //取出map中的键值对
+        List<NameValueDto> listNameValue = new ArrayList<>();
+        for(String key : res.keySet()){
+            NameValueDto nameValueDto = new NameValueDto();
+            Integer value = res.get(key);
+            nameValueDto.setName(key);
+            nameValueDto.setValue(value);
+            listNameValue.add(nameValueDto);
         }
 
         return null;
+    }
+
+    @Override
+    public R getAllKeyWords() {
+        //数据层操作
+        List<Input> ListInput = inputDao.selectList(null);
+
+        //http://www.hankcs.com/nlp/hanlp.html 参考文章
+        Map<String,Integer> res = new HashMap<>();//所有关键字的结果数组,进行词频统计
+        for (int i = 0; i < ListInput.size(); i++) {
+            String s = ListInput.get(i).getText();
+            //提取关键词
+            List<String> keywordList = HanLP.extractKeyword(s, 50);
+            //词频统计
+            for (int j = 0; j < keywordList.size(); j++) {
+                if(res.get(keywordList.get(j))==null){//map中没有该关键词
+                    res.put(keywordList.get(j),1);
+                }else{
+                    Integer value = res.get(keywordList.get(j))+1;
+                    res.put(keywordList.get(j),value);
+                }
+            }
+        }
+        //取出map中的键值对
+        List<NameValueDto> listNameValue = new ArrayList<>();
+        for(String key : res.keySet()){
+            NameValueDto nameValueDto = new NameValueDto();
+            Integer value = res.get(key);
+            if (value>10&&!(key.equals("#")||key.equals("@")||key.equals("L")||key.equals("##")
+                    ||key.equals("#L")))
+            {//进行筛选
+                nameValueDto.setName(key);
+                nameValueDto.setValue(value);
+                listNameValue.add(nameValueDto);
+            }
+        }
+        Collections.sort(listNameValue);//返回排序后的数据
+        return new R(true,listNameValue,"分析完成");
+    }
+
+    @Override
+    public R getAllKeyWords(String startTime,String endTime) {
+        //数据层操作
+        QueryWrapper<Input> wrapper = new QueryWrapper<>();
+        wrapper.between("created",startTime,endTime);
+        List<Input> ListInput = inputDao.selectList(wrapper);
+
+        //http://www.hankcs.com/nlp/hanlp.html 参考文章
+        Map<String,Integer> res = new HashMap<>();//所有关键字的结果数组,进行词频统计
+        for (int i = 0; i < ListInput.size(); i++) {
+            String s = ListInput.get(i).getText();
+            //提取关键词
+            List<String> keywordList = HanLP.extractKeyword(s, 50);
+            //词频统计
+            for (int j = 0; j < keywordList.size(); j++) {
+                if(res.get(keywordList.get(j))==null){//map中没有该关键词
+                    res.put(keywordList.get(j),1);
+                }else{
+                    Integer value = res.get(keywordList.get(j))+1;
+                    res.put(keywordList.get(j),value);
+                }
+            }
+        }
+        //取出map中的键值对
+        List<NameValueDto> listNameValue = new ArrayList<>();
+        for(String key : res.keySet()){
+            NameValueDto nameValueDto = new NameValueDto();
+            Integer value = res.get(key);
+            if (value>10&&!(key.equals("#")||key.equals("@")||key.equals("L")||key.equals("##")
+                    ||key.equals("#L")))
+            {//进行筛选
+                nameValueDto.setName(key);
+                nameValueDto.setValue(value);
+                listNameValue.add(nameValueDto);
+            }
+        }
+        Collections.sort(listNameValue);//返回排序后的数据
+        return new R(true,listNameValue,"分析完成");
     }
 
     @Override

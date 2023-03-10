@@ -82,7 +82,7 @@
       <recent name="com.xzy.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Tests.keyWords">
+  <component name="RunManager" selected="Spring Boot.SpringbootApplication">
     <configuration name="Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
       <module name="springboot" />
@@ -112,6 +112,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Tests.testhanlp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xzy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.xzy" />
+      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
+      <option name="METHOD_NAME" value="testhanlp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="springboot" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.xzy.SpringbootApplication" />
@@ -132,12 +148,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.Tests" />
+      <item itemvalue="JUnit.Tests.keyWords" />
+      <item itemvalue="JUnit.Tests.testhanlp" />
       <item itemvalue="npm.serve" />
       <item itemvalue="Spring Boot.SpringbootApplication" />
-      <item itemvalue="JUnit.Tests.keyWords" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests.testhanlp" />
         <item itemvalue="JUnit.Tests.keyWords" />
         <item itemvalue="Application.Tests" />
       </list>
@@ -159,7 +177,11 @@
       <workItem from="1677648254860" duration="7494000" />
       <workItem from="1677662018090" duration="93394000" />
       <workItem from="1678069062959" duration="15224000" />
-      <workItem from="1678091160068" duration="112456000" />
+      <workItem from="1678091160068" duration="114984000" />
+      <workItem from="1678418818518" duration="2812000" />
+      <workItem from="1678423818145" duration="7535000" />
+      <workItem from="1678431640481" duration="1866000" />
+      <workItem from="1678433707577" duration="12022000" />
     </task>
     <servers />
   </component>

@@ -24,7 +24,7 @@
       :data="tableData"
       border
       stripe
-      style="width: 90%;height:500px;margin-left: auto;margin-right: auto;margin-top: 25px;">
+      style="width: 90%;height:510px;margin-left: auto;margin-right: auto;margin-top: 25px;">
     <el-table-column
         label="序号"
         width="180"
@@ -59,9 +59,14 @@
   <el-pagination
       background
       layout="prev, pager, next"
-      style="justify-content: center;margin-top: 10px"
+      style="justify-content: center;margin-top: 20px"
       :total="1000">
   </el-pagination>
+  <div style="height: 540px;display: flex;margin-top: 20px">
+    <div style="background-color: floralwhite;height: 540px;width: 500px"></div>
+    <div style="background-color: blue;height: 540px;width: 500px"></div>
+    <div style="background-color: paleturquoise;height: 540px;width: 500px"></div>
+  </div>
   <Footer></Footer>
 </template>
 
@@ -83,7 +88,7 @@ export default {
             name: '王小虎',
             txt: '湖南师范大学考研有没有考951的uu啊，公有考951的uu啊，公共课得160，333我感觉改的有考951的uu啊，公共课得160，333我感觉改的有考951的uu啊，公共课得160，333我感觉改的有考951的uu啊，公共课得160，333我感觉改的有考951的uu啊，公共课得160，333我感觉改的有考951的uu啊，公共课得160，333我感觉改的有考951的uu啊，公共课得160，333我感觉改的有考951的uu啊，公共课得160，333我感觉改的   共课得160，333我感觉改的挺宽容的，我感觉951太让我心碎了，只空了一道15分的题，题目都是会的，结果比45分没写的333分还低🙃349还有缘复试吗',
             emo: 'good',
-            edit: '2016-01-01',
+            edit: '2016-01-01 20:20:20',
           },
       ]
     }

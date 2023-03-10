@@ -3,8 +3,11 @@ package com.xzy;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hankcs.hanlp.HanLP;
+import com.xzy.dao.InputDao;
 import com.xzy.domain.DTO.KeyWordDataDto;
 import com.xzy.domain.DTO.NameValueDto;
+import com.xzy.domain.Input;
 import com.xzy.service.impl.KeyWordService;
 
 import org.junit.jupiter.api.Test;
@@ -79,20 +82,59 @@ class Tests {
                 res.put(arr2.get(i).getWord(),value);
             }
         }
-        //取出map中的键值对
+//        取出map中的键值对
         System.out.println(res);
         for(String key : res.keySet()){
             Integer value = res.get(key);
             System.out.println(key+"  "+value);
         }
 //        List<NameValueDto> listNameValue = new ArrayList<>();
-//        for (int i = 0; i < res.size(); i++) {
-//            NameValueDto nameValueDto;
-//            nameValueDto.setName();
-//            listNameValue.add()
+//        for(String key : res.keySet()){
+//            Integer value = res.get(key);
+//            NameValueDto nameValueDto = new NameValueDto();
+//            nameValueDto.setName(key);
+//            nameValueDto.setValue(value);
+//            listNameValue.add(nameValueDto);
 //        }
-//        String json= JSON.toJSONString(res);
-//        System.out.println(json);
+        String json= JSON.toJSONString(res);
+        System.out.println(json);
+    }
+
+    //http://www.hankcs.com/nlp/hanlp.html 参考文章
+    @Autowired
+    InputDao inputDao;
+    @Test
+    public void testhanlp(){
+        //数据层操作
+        List<Input> ListInput = inputDao.selectList(null);
+
+        Map<String,Integer> res = new HashMap<>();//所有关键字的结果数组,进行词频统计
+        for (int i = 0; i < ListInput.size(); i++) {
+            String s = ListInput.get(i).getText();
+            //提取关键词
+            List<String> keywordList = HanLP.extractKeyword(s, 50);
+            //词频统计
+            for (int j = 0; j < keywordList.size(); j++) {
+                if(res.get(keywordList.get(j))==null){//map中没有该关键词
+                    res.put(keywordList.get(j),1);
+                }else{
+                    Integer value = res.get(keywordList.get(j))+1;
+                    res.put(keywordList.get(j),value);
+                }
+            }
+        }
+        //取出map中的键值对
+        List<NameValueDto> listNameValue = new ArrayList<>();
+        for(String key : res.keySet()){
+            NameValueDto nameValueDto = new NameValueDto();
+            Integer value = res.get(key);
+            if (value>10&&!(key.equals("#")||key.equals("@")||key.equals("L"))){
+                nameValueDto.setName(key);
+                nameValueDto.setValue(value);
+                listNameValue.add(nameValueDto);
+            }
+        }
+        System.out.println(listNameValue);
     }
 
 }

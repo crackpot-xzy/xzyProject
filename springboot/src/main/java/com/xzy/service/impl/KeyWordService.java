@@ -7,7 +7,9 @@ import com.xzy.domain.Input;
 import java.util.Map;
 
 public interface KeyWordService extends IService<Input> {
+    R getAllKeyWordsAPI();
     R getAllKeyWords();
+    R getAllKeyWords(String startTime,String endTime);
     String doHanlpApi(String token, String url, Map<String,Object> params);
 
 }
