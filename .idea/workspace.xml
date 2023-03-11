@@ -75,14 +75,14 @@
       <recent name="B:\gitProject\myProject\myRepository\vue\src\views" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.xzy.domain.DTO" />
       <recent name="com.xzy.service.impl" />
+      <recent name="com.xzy.service" />
+      <recent name="com.xzy.domain.DTO" />
       <recent name="com.xzy.service.impl.impl" />
       <recent name="com.xzy.controller" />
-      <recent name="com.xzy.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Tests.test">
+  <component name="RunManager" selected="Spring Boot.SpringbootApplication">
     <configuration name="Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
       <module name="springboot" />
@@ -199,7 +199,7 @@
       <workItem from="1678418818518" duration="2812000" />
       <workItem from="1678423818145" duration="7535000" />
       <workItem from="1678431640481" duration="1866000" />
-      <workItem from="1678433707577" duration="17180000" />
+      <workItem from="1678433707577" duration="23994000" />
     </task>
     <servers />
   </component>

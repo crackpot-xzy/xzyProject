@@ -153,17 +153,6 @@ public class KeyWordServiceImpl extends ServiceImpl<InputDao, Input> implements 
     }
 
     @Override
-    public R getAllEmo() {
-
-        return null;
-    }
-
-    @Override
-    public R getEmoByTime(String startTime, String endTime) {
-        return null;
-    }
-
-    @Override
     public String doHanlpApi(String token, String url, Map<String, Object> params) {
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
