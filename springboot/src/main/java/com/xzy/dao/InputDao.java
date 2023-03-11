@@ -21,4 +21,17 @@ public interface InputDao extends BaseMapper<Input> {
     @Delete("DELETE FROM input")
     int DeleteAll();
 
+    //舆情热度相关方法
+    @Select("SELECT created FROM input ORDER BY created LIMIT 1")
+    String selectTimeFirst();
+    @Select("SELECT created FROM input ORDER BY created  desc LIMIT 1")
+    String selectTimeEnd();
+    @Select("SELECT datediff(#{endTime},#{firstTime})")
+    int getDay(String endTime,String firstTime);
+    @Select("SELECT COUNT(*)+SUM(attitudes)+SUM(comments)+SUM(reposts) FROM input")
+    int getHotNumber();
+    @Select("SELECT COUNT(*)+SUM(attitudes)+SUM(comments)+SUM(reposts) FROM input WHERE created BETWEEN #{firstTime} AND #{endTime}")
+    int getHotNumberByTime(String endTime,String firstTime);
+
+
 }

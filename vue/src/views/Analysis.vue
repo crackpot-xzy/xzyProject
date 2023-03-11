@@ -55,12 +55,14 @@ export default {
     },
     // 热度
     getAllHot(){
-      axios.get("http://localhost:8081/Analysis/All/hot").then((res)=>{
+      axios.get("http://localhost:8081/Analysis/all/hot").then((res)=>{
+        console.log(res.data);
         this.initHotEcharts(res.data.data);
       })
     },
     getHotByTime(){
-      axios.get("http://localhost:8081/Analysis/byTime/hot").then((res)=>{
+      axios.get("http://localhost:8081/Analysis/byTime/hot/"+this.time).then((res)=>{
+        console.log(res.data);
         this.initHotEcharts(res.data.data);
       })
     },
@@ -180,7 +182,7 @@ export default {
             startAngle: 200,
             endAngle: -20,
             min: 0,
-            max: 10000,
+            max: 1000,
             splitNumber: 10,
             itemStyle: {
               color: '#FFAB91'
@@ -237,7 +239,7 @@ export default {
             },
             data: [
               {
-                value: data.value,
+                value: data,
               }
             ]
           },
@@ -247,7 +249,7 @@ export default {
             startAngle: 200,
             endAngle: -20,
             min: 0,
-            max: 10000,
+            max: 1000,
             itemStyle: {
               color: '#FD7347'
             },
@@ -275,7 +277,7 @@ export default {
             },
             data: [
               {
-                value: data.value,
+                value: data,
               }
             ]
           }
