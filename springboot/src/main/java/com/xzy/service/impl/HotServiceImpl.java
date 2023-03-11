@@ -18,7 +18,7 @@ public class HotServiceImpl extends ServiceImpl<InputDao, Input> implements HotS
     public R getAllHot() {
         String firstTime = inputDao.selectTimeFirst();
         String endTime = inputDao.selectTimeEnd();
-        int day = inputDao.getDay(endTime,firstTime)+1;
+        int day = inputDao.getDay(endTime,firstTime)+1;//+1保证不会出现/0的问题
         int hotnumber = inputDao.getHotNumber();
         Integer value = hotnumber/day;
         return new R(true,value,"热度计算成功");

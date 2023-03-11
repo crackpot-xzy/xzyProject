@@ -19,11 +19,10 @@
   <div style="height: 540px;display: flex;margin-top: 15px">
     <!--    margin-right: auto;margin-left: auto-->
     <div class="charts" id="echartsHot" style="height: 540px;width: 780px;"></div>
-    <div class="charts" id="2" style="height: 540px;width: 780px;"></div>
+    <div class="charts" id="echartsEmo" style="height: 540px;width: 780px;"></div>
   </div>
 
   <div style="height: 540px;display: flex;margin-top: 15px;margin-bottom: 10px">
-<!--    margin-right: auto;margin-left: auto-->
     <div class="charts" id="echartsWordcloud" style="height: 540px;width: 780px;"></div>
     <div class="charts" id="echartsPie" style="height: 540px;width: 780px;margin-left: 10px"></div>
   </div>
@@ -41,6 +40,8 @@ export default {
   data() {
     return {
       time: '',
+      //热度指数最大刻度
+      max:500,
     }
   },
 
@@ -80,6 +81,27 @@ export default {
     getKeyWordsByTime() {
       this.$message.info("进行中...");
       axios.get("http://localhost:8081/Analysis/byTime/"+this.time)
+          .then((res) => {
+            console.log(res.data);
+            this.$message.success(res.data.msg);
+            this.initCloudEcharts(res.data.data);
+            this.initPieEcharts(res.data.data);
+          }).finally()
+    },
+    //情感分析
+    getAllEmo(){
+      this.$message.info("进行中...");
+      axios.get("http://localhost:8081/Analysis/all/emo")
+          .then((res) => {
+            console.log(res.data);
+            this.$message.success(res.data.msg);
+            this.initCloudEcharts(res.data.data);
+            this.initPieEcharts(res.data.data);
+          }).finally()
+    },
+    getEmoByTime(){
+      this.$message.info("进行中...");
+      axios.get("http://localhost:8081/Analysis/byTime/emo/"+this.time)
           .then((res) => {
             console.log(res.data);
             this.$message.success(res.data.msg);
@@ -182,7 +204,7 @@ export default {
             startAngle: 200,
             endAngle: -20,
             min: 0,
-            max: 1000,
+            max: this.max,
             splitNumber: 10,
             itemStyle: {
               color: '#FFAB91'
@@ -249,7 +271,7 @@ export default {
             startAngle: 200,
             endAngle: -20,
             min: 0,
-            max: 1000,
+            max: this.max,
             itemStyle: {
               color: '#FD7347'
             },
@@ -284,6 +306,47 @@ export default {
         ]
       };
       echartsHot.setOption(option);
+    },
+    initEmoEcharts(data){
+      let echartsEmo = this.$echarts.init(document.getElementById("echartsEmo"));
+      let option = {
+        xAxis: {
+          type: 'category',
+          data: ['Good', 'Neutral', 'Bad']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [
+              { value: data.value1,
+                itemStyle: {
+                }
+
+              },
+              { value: data.value2,
+                itemStyle: {
+                  color: 'yellow'
+                }
+
+              },
+              { value: data.value3,
+                itemStyle: {
+                  color: 'red'
+                }
+
+              }
+            ],
+            type: 'bar',
+            showBackground: true,
+            backgroundStyle: {
+              color: 'rgba(180, 180, 180, 0.2)'
+            }
+          }
+        ]
+      };
+      echartsEmo.setOption(option);
     }
   }
 }
