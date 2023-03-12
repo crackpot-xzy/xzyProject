@@ -22,15 +22,15 @@ public class RecordController {
     @Autowired
     OutputKeyWordService outputKeyWordService;
 
-    @GetMapping("/selectData/{currentPage}/{pageSize}")
-    public R selectData(@PathVariable int currentPage,@PathVariable int pageSize){
-        return outputSelectDataService.SelectAllData(currentPage,pageSize);
+    @GetMapping("/selectData/{currentPage}/{pageSize}/{id}")
+    public R selectData(@PathVariable int currentPage,@PathVariable int pageSize,@PathVariable Integer id){
+        return outputSelectDataService.SelectAllData(currentPage,pageSize,id);
     }
-    @GetMapping("/selectData/{currentPage}/{pageSize}/{time}")
-    public R selectData(@PathVariable int currentPage, @PathVariable int pageSize, @PathVariable String time){
+    @GetMapping("/selectData/{currentPage}/{pageSize}/{time}/{id}")
+    public R selectData(@PathVariable int currentPage, @PathVariable int pageSize, @PathVariable String time,@PathVariable Integer id){
         try{
             String[] timeSplit = time.split(",");
-            return outputSelectDataService.SelectDataByTime(currentPage,pageSize,timeSplit[0],timeSplit[1]);
+            return outputSelectDataService.SelectDataByTime(currentPage,pageSize,timeSplit[0],timeSplit[1],id);
         }catch (Exception e){
             return new R(false,null,"请选择正确的时间");
         }

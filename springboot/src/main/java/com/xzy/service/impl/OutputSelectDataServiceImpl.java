@@ -18,18 +18,20 @@ public class OutputSelectDataServiceImpl extends ServiceImpl<OutputDao,Output> i
     OutputDao outputDao;
 
     @Override
-    public R SelectDataByTime(int currentPage, int pageSize, String startTime, String endTime) {
+    public R SelectDataByTime(int currentPage, int pageSize, String startTime, String endTime,Integer id) {
         QueryWrapper<Output> wrapper = new QueryWrapper<>();
-        wrapper.between("created",startTime,endTime);
+        wrapper.between("created",startTime,endTime).eq("user",id);
         IPage<Output> page = new Page<>(currentPage,pageSize);
         outputDao.selectPage(page,wrapper);
         return new R(true,page,"查询成功");
     }
 
     @Override
-    public R SelectAllData(int currentPage, int pageSize) {
+    public R SelectAllData(int currentPage, int pageSize,Integer id) {
+        QueryWrapper<Output> wrapper = new QueryWrapper<>();
+        wrapper.eq("user",id);
         IPage<Output> page = new Page<>(currentPage,pageSize);
-        outputDao.selectPage(page,null);
+        outputDao.selectPage(page,wrapper);
         return new R(true,page,"查询成功");
     }
 }

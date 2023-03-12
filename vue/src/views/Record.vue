@@ -100,13 +100,13 @@ export default {
   },
   methods: {
     getAll() {
-      // this.selectAllData();
+      this.selectAllData();
       this.getAllKeyWords();
       // this.getAllHot();
       // this.getAllEmo();
     },
     getByTime() {
-      // this.selectDataByTime();
+      this.selectDataByTime();
       this.getKeyWordsByTime();
       // this.getHotByTime();
       // this.getEmoByTime();
@@ -193,7 +193,7 @@ export default {
     //根据时间分页查询
     selectAllData(){
       this.flag=0;
-      axios.get("http://localhost:8081/Record/selectData/"+this.pagination.currentPage+"/"+this.pagination.pageSize)
+      axios.get("http://localhost:8081/Record/selectData/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+store.state.id)
           .then((res)=>{
             this.tableData = res.data.data.records;
             console.log(res.data.data);
@@ -204,7 +204,7 @@ export default {
     },
     selectDataByTime(){
       this.flag=1;
-      axios.get("http://localhost:8081/Record/selectData/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time)
+      axios.get("http://localhost:8081/Record/selectData/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time+"/"+store.state.id)
           .then((res)=>{
             if (res.data.flag){
               this.tableData = res.data.data.records;
