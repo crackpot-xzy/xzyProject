@@ -6,7 +6,7 @@ import com.xzy.domain.Output;
 
 public interface OutputHotService extends IService<Output> {
 
-    R getAllHot();
-    R getHotByTime(String startTime,String endTime);
+    R getAllHot(Integer id);
+    R getHotByTime(String startTime,String endTime,Integer id);
 
 }

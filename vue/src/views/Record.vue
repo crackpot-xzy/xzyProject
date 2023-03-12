@@ -85,6 +85,7 @@ export default {
   data() {
     return {
       time: '',
+      max:1000,
       EditTime: '',
       tableData: [],
       pagination: {//分页相关模型数据
@@ -102,25 +103,25 @@ export default {
     getAll() {
       this.selectAllData();
       this.getAllKeyWords();
-      // this.getAllHot();
+      this.getAllHot();
       // this.getAllEmo();
     },
     getByTime() {
       this.selectDataByTime();
       this.getKeyWordsByTime();
-      // this.getHotByTime();
+      this.getHotByTime();
       // this.getEmoByTime();
     },
     // 热度
     getAllHot(){
-      axios.get("http://localhost:8081/Record/all/hot").then((res)=>{
+      axios.get("http://localhost:8081/Record/all/hot/"+store.state.id).then((res)=>{
         console.log(res.data);
         this.initHotEcharts(res.data.data);
         this.$message.success(res.data.msg);
       })
     },
     getHotByTime(){
-      axios.get("http://localhost:8081/Record/byTime/hot/"+this.time).then((res)=>{
+      axios.get("http://localhost:8081/Record/byTime/hot"+"/"+this.time+"/"+store.state.id).then((res)=>{
         console.log(res.data);
         if (res.data.flag){
           this.initHotEcharts(res.data.data);

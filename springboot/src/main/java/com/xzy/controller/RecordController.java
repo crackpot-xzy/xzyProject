@@ -1,10 +1,7 @@
 package com.xzy.controller;
 
 import com.xzy.controller.utils.R;
-import com.xzy.service.OutpuDeleteDataService;
-import com.xzy.service.OutputKeyWordService;
-import com.xzy.service.OutputSelectDataService;
-import com.xzy.service.SaveToOutputService;
+import com.xzy.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +18,8 @@ public class RecordController {
     OutpuDeleteDataService outpuDeleteDataService;
     @Autowired
     OutputKeyWordService outputKeyWordService;
+    @Autowired
+    OutputHotService outputHotService;
 
     @GetMapping("/selectData/{currentPage}/{pageSize}/{id}")
     public R selectData(@PathVariable int currentPage,@PathVariable int pageSize,@PathVariable Integer id){
@@ -45,11 +44,11 @@ public class RecordController {
             return new R(false,null,"请选择正确的时间");
         }
     }
+
     @GetMapping("/all/{id}")
     public R KeyWordsAll(@PathVariable Integer id){
         return outputKeyWordService.getAllKeyWords(id);
     }
-
     @GetMapping("/byTime/{time}/{id}")
     public R KeyWordsByTime(@PathVariable String time,@PathVariable Integer id){
         try{
@@ -60,4 +59,17 @@ public class RecordController {
         }
     }
 
+    @GetMapping("/all/hot/{id}")
+    public R hotAll(@PathVariable Integer id){
+        return outputHotService.getAllHot(id);
+    }
+    @GetMapping("/byTime/hot/{time}/{id}")
+    public R hotByTime(@PathVariable String time,@PathVariable Integer id){
+        try{
+            String[] timeSplit = time.split(",");
+            return outputHotService.getHotByTime(timeSplit[0],timeSplit[1],id);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
+    }
 }
