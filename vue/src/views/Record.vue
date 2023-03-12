@@ -10,9 +10,9 @@
         start-placeholder="开始日期"
         end-placeholder="结束日期">
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 80px" @click="selectDataByTime"><el-icon><CaretLeft /></el-icon>查询</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 80px" @click="getByTime"><el-icon><CaretLeft /></el-icon>查询</el-button>
     <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 80px" @click="open"><el-icon><DeleteFilled /></el-icon>删除</el-button>
-    <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectAllData"><el-icon><List /></el-icon>查看全部</el-button>
+    <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="getAll"><el-icon><List /></el-icon>查看全部</el-button>
   </div>
   <el-table
       :data="tableData"
@@ -100,16 +100,16 @@ export default {
   },
   methods: {
     getAll() {
-      this.selectAllData();
+      // this.selectAllData();
       this.getAllKeyWords();
-      this.getAllHot();
-      this.getAllEmo();
+      // this.getAllHot();
+      // this.getAllEmo();
     },
     getByTime() {
-      this.selectDataByTime();
+      // this.selectDataByTime();
       this.getKeyWordsByTime();
-      this.getHotByTime();
-      this.getEmoByTime();
+      // this.getHotByTime();
+      // this.getEmoByTime();
     },
     // 热度
     getAllHot(){
@@ -132,7 +132,7 @@ export default {
     },
     // 关键词、词频 对应饼图和词云图
     getAllKeyWords() {
-      axios.get("http://localhost:8081/Record/all")
+      axios.get("http://localhost:8081/Record/all/"+store.state.id)
           .then((res) => {
             console.log(res.data);
             this.initCloudEcharts(res.data.data);
@@ -141,7 +141,7 @@ export default {
           }).finally()
     },
     getKeyWordsByTime() {
-      axios.get("http://localhost:8081/Record/byTime/"+this.time)
+      axios.get("http://localhost:8081/Record/byTime/"+this.time+"/"+store.state.id)
           .then((res) => {
             console.log(res.data);
             if (res.data.flag){

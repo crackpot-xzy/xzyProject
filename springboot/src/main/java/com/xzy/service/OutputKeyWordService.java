@@ -6,6 +6,6 @@ import com.xzy.domain.Output;
 
 
 public interface OutputKeyWordService extends IService<Output> {
-    R getAllKeyWords();
-    R getKeyWordsByTime(String startTime,String endTime);
+    R getAllKeyWords(Integer id);
+    R getKeyWordsByTime(String startTime,String endTime,Integer id);
 }

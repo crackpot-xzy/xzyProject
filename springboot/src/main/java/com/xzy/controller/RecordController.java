@@ -2,6 +2,7 @@ package com.xzy.controller;
 
 import com.xzy.controller.utils.R;
 import com.xzy.service.OutpuDeleteDataService;
+import com.xzy.service.OutputKeyWordService;
 import com.xzy.service.OutputSelectDataService;
 import com.xzy.service.SaveToOutputService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class RecordController {
     OutputSelectDataService outputSelectDataService;
     @Autowired
     OutpuDeleteDataService outpuDeleteDataService;
+    @Autowired
+    OutputKeyWordService outputKeyWordService;
 
     @GetMapping("/selectData/{currentPage}/{pageSize}")
     public R selectData(@PathVariable int currentPage,@PathVariable int pageSize){
@@ -33,10 +36,6 @@ public class RecordController {
         }
     }
 
-    @GetMapping("/delete")
-    public R deleteData(){
-        return new R(false,null,"请选择条件");
-    }
     @GetMapping("/delete/{time}")
     public R deleteData(@PathVariable String time){
         try{
@@ -46,6 +45,19 @@ public class RecordController {
             return new R(false,null,"请选择正确的时间");
         }
     }
+    @GetMapping("/all/{id}")
+    public R KeyWordsAll(@PathVariable Integer id){
+        return outputKeyWordService.getAllKeyWords(id);
+    }
 
+    @GetMapping("/byTime/{time}/{id}")
+    public R KeyWordsByTime(@PathVariable String time,@PathVariable Integer id){
+        try{
+            String[] timeSplit = time.split(",");
+            return  outputKeyWordService.getKeyWordsByTime(timeSplit[0],timeSplit[1],id);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
+    }
 
 }

@@ -20,10 +20,11 @@ public class OutputKeyWordServiceImpl extends ServiceImpl<OutputDao, Output> imp
 
 
     @Override
-    public R getAllKeyWords() {
+    public R getAllKeyWords(Integer id) {
         //数据层操作
-        List<Output> ListOutput = outputDao.selectList(null);
-
+        QueryWrapper<Output> wrapper = new QueryWrapper<>();
+        wrapper.eq("user",id);
+        List<Output> ListOutput = outputDao.selectList(wrapper);
         //http://www.hankcs.com/nlp/hanlp.html 参考文章
         Map<String,Integer> res = new HashMap<>();//所有关键字的结果数组,进行词频统计
         for (int i = 0; i < ListOutput.size(); i++) {
@@ -58,10 +59,11 @@ public class OutputKeyWordServiceImpl extends ServiceImpl<OutputDao, Output> imp
     }
 
     @Override
-    public R getKeyWordsByTime(String startTime,String endTime) {
+    public R getKeyWordsByTime(String startTime,String endTime,Integer id) {
         //数据层操作
         QueryWrapper<Output> wrapper = new QueryWrapper<>();
-        wrapper.between("created",startTime,endTime);
+        wrapper.between("created",startTime,endTime)
+                .eq("user",id);
         List<Output> ListOutput = outputDao.selectList(wrapper);
 
         //http://www.hankcs.com/nlp/hanlp.html 参考文章
