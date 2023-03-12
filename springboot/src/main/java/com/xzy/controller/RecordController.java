@@ -36,11 +36,11 @@ public class RecordController {
         }
     }
 
-    @GetMapping("/delete/{time}")
-    public R deleteData(@PathVariable String time){
+    @GetMapping("/delete/{time}/{id}")
+    public R deleteData(@PathVariable String time,@PathVariable Integer id){
         try{
             String[] timeSplit = time.split(",");
-            return outpuDeleteDataService.Delete(timeSplit[0],timeSplit[1]);
+            return outpuDeleteDataService.Delete(timeSplit[0],timeSplit[1],id);
         }catch (Exception e){
             return new R(false,null,"请选择正确的时间");
         }

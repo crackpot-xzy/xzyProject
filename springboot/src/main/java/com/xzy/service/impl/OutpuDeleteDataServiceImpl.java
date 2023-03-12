@@ -15,9 +15,9 @@ public class OutpuDeleteDataServiceImpl extends ServiceImpl<OutputDao, Output> i
     @Autowired
     OutputDao outputDao;
     @Override
-    public R Delete(String startTime, String endTime) {
+    public R Delete(String startTime, String endTime,Integer id) {
         QueryWrapper<Output> wrapper = new QueryWrapper<>();
-        wrapper.between("created",startTime,endTime);
+        wrapper.between("created",startTime,endTime).eq("user",id);
         int r = outputDao.delete(wrapper);
         return new R(true,null,"成功删除"+r+"条数据");
     }

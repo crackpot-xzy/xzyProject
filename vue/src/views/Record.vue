@@ -226,7 +226,7 @@ export default {
       }).then(() => {this.deleteData()})
     },
     deleteData(){
-      axios.get("http://localhost:8081/Record/delete"+"/"+this.time)
+      axios.get("http://localhost:8081/Record/delete"+"/"+this.time+"/"+store.state.id)
           .then((res)=>{
             if (res.data.flag){
               this.$message.success(res.data.msg);
