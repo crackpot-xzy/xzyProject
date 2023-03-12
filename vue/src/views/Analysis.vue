@@ -76,8 +76,12 @@ export default {
     getHotByTime(){
       axios.get("http://localhost:8081/Analysis/byTime/hot/"+this.time).then((res)=>{
         console.log(res.data);
-        this.initHotEcharts(res.data.data);
-        this.$message.success(res.data.msg);
+        if (res.data.flag){
+          this.initHotEcharts(res.data.data);
+          this.$message.success(res.data.msg);
+        }else{
+          this.$message.error(res.data.msg);
+        }
       })
     },
     // 关键词、词频 对应饼图和词云图
@@ -94,9 +98,13 @@ export default {
       axios.get("http://localhost:8081/Analysis/byTime/"+this.time)
           .then((res) => {
             console.log(res.data);
-            this.initCloudEcharts(res.data.data);
-            this.initPieEcharts(res.data.data);
-            this.$message.success(res.data.msg);
+            if (res.data.flag){
+              this.initCloudEcharts(res.data.data);
+              this.initPieEcharts(res.data.data);
+              this.$message.success(res.data.msg);
+            }else{
+              this.$message.error(res.data.msg);
+            }
           }).finally()
     },
     //情感分析
@@ -112,8 +120,13 @@ export default {
       axios.get("http://localhost:8081/Analysis/byTime/emo/"+this.time+"/"+store.state.id)
           .then((res) => {
             console.log(res.data);
-            this.initEmoEcharts(res.data.data);
-            this.$message.success(res.data.msg);
+            if (res.data.flag){
+              this.initEmoEcharts(res.data.data);
+              this.$message.success(res.data.msg);
+            }else {
+              this.$message.error(res.data.msg);
+            }
+
           }).finally()
     },
 

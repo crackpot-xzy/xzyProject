@@ -140,11 +140,16 @@ export default {
       this.flag=1;
       axios.get("http://localhost:8081/Record/selectData/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time)
           .then((res)=>{
-            this.tableData = res.data.data.records;
-            console.log(res.data.data);
-            this.pagination.currentPage = res.data.data.current;
-            this.pagination.total = res.data.data.total;
-            this.$message.success(res.data.msg)
+            if (res.data.flag){
+              this.tableData = res.data.data.records;
+              console.log(res.data.data);
+              this.pagination.currentPage = res.data.data.current;
+              this.pagination.total = res.data.data.total;
+              this.$message.success(res.data.msg)
+            }else{
+              this.$message.error(res.data.msg)
+            }
+
           }).finally()
     },
 

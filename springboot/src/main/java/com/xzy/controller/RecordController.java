@@ -28,14 +28,16 @@ public class RecordController {
         String[] timeSplit = time.split(",");
         return outputSelectDataService.SelectDataByTime(currentPage,pageSize,timeSplit[0],timeSplit[1]);
     }
+
+    @GetMapping("/delete")
+    public R deleteData(){
+        return new R(false,null,"请选择条件");
+    }
     @GetMapping("/delete/{time}")
     public R deleteData(@PathVariable String time){
         String[] timeSplit = time.split(",");
         return outpuDeleteDataService.Delete(timeSplit[0],timeSplit[1]);
     }
-    @GetMapping("/delete/")
-    public R deleteData(){
-            return new R(false,null,"请选择条件");
-    }
+
 
 }

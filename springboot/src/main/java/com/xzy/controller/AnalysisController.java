@@ -30,8 +30,12 @@ public class AnalysisController {
 
     @GetMapping("/byTime/{time}")
     public R KeyWordsByTime(@PathVariable String time){
-        String[] timeSplit = time.split(",");
-        return  keyWordService.getKeyWordsByTime(timeSplit[0],timeSplit[1]);
+        try{
+            String[] timeSplit = time.split(",");
+            return  keyWordService.getKeyWordsByTime(timeSplit[0],timeSplit[1]);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
     }
 
     @GetMapping("/all/hot")
@@ -41,8 +45,12 @@ public class AnalysisController {
 
     @GetMapping("/byTime/hot/{time}")
     public R hotByTime(@PathVariable String time){
-        String[] timeSplit = time.split(",");
-        return hotService.getHotByTime(timeSplit[0],timeSplit[1]);
+        try{
+            String[] timeSplit = time.split(",");
+            return hotService.getHotByTime(timeSplit[0],timeSplit[1]);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
     }
 
     @GetMapping("/all/emo/{id}")
@@ -52,8 +60,12 @@ public class AnalysisController {
 
     @GetMapping("/byTime/emo/{time}/{id}")
     public R EmoByTime(@PathVariable String time,@PathVariable Integer id){
-        String[] timeSplit = time.split(",");
-        return emoService.getEmoByTime(timeSplit[0],timeSplit[1],id);
+        try{
+            String[] timeSplit = time.split(",");
+            return emoService.getEmoByTime(timeSplit[0],timeSplit[1],id);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
     }
 
     @GetMapping("/save")

@@ -11,8 +11,9 @@
         end-placeholder="结束日期"
     >
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectDataByTime"><el-icon><List /></el-icon>数据查询</el-button>
-    <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="open"><el-icon><DeleteFilled /></el-icon>删除数据</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectDataByTime"><el-icon><CaretLeft /></el-icon>条件查询</el-button>
+    <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectAllData"><el-icon><List /></el-icon>查询全部</el-button>
+    <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="open"><el-icon><DeleteFilled /></el-icon>清空数据</el-button>
   </div>
   <el-table
       :data="tableData"
@@ -78,26 +79,42 @@ export default {
       return index+1;
     },
     //根据时间分页查询
+    selectAllData(){
+      this.flag=0;
+      axios.get("http://localhost:8081/Search/selectData"+"/"+this.pagination.currentPage+"/"+this.pagination.pageSize)
+          .then((res)=>{
+            this.tableData = res.data.data.records;
+            console.log(res.data.data);
+            this.pagination.currentPage = res.data.data.current;
+            this.pagination.total = res.data.data.total;
+            this.$message.success(res.data.msg)
+          }).finally()
+    },
     selectDataByTime(){
         this.flag=1;
-        axios.get("http://localhost:8081/Search/selectData/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time)
+        axios.get("http://localhost:8081/Search/selectData"+"/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time)
             .then((res)=>{
-              this.tableData = res.data.data.records;
-              console.log(res.data.data);
-              this.pagination.currentPage = res.data.data.current;
-              this.pagination.total = res.data.data.total;
-              this.$message.success(res.data.msg)
+              if (res.data.flag){
+                this.tableData = res.data.data.records;
+                console.log(res.data.data);
+                this.pagination.currentPage = res.data.data.current;
+                this.pagination.total = res.data.data.total;
+                this.$message.success(res.data.msg)
+              }else {
+                this.$message.error(res.data.msg)
+              }
+
             }).finally()
     },
     open() {
-      this.$confirm('请确认是否清空数据？', '确认信息', {
+      this.$confirm('请确认是否删除数据？', '确认信息', {
         distinguishCancelAndClose: true,
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(() => {this.deleteData()})
     },
     deleteData(){
-      axios.get("http://localhost:8081/Search/delete/"+this.time)
+      axios.get("http://localhost:8081/Search/delete")
           .then((res)=>{
             this.$message.success(res.data.msg);
           }).finally()
