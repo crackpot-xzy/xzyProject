@@ -78,6 +78,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import axios from "axios";
+import store from "@/store";
 export default {
   name: "Record",
   components: {Footer, Header},
@@ -98,16 +99,84 @@ export default {
     }
   },
   methods: {
-    // getAll() {
-    //   this.getAllKeyWords();
-    //   this.getAllHot();
-    //   this.getAllEmo();
-    // },
-    // getByTime() {
-    //   this.getKeyWordsByTime();
-    //   this.getHotByTime();
-    //   this.getEmoByTime();
-    // },
+    getAll() {
+      this.selectAllData();
+      this.getAllKeyWords();
+      this.getAllHot();
+      this.getAllEmo();
+    },
+    getByTime() {
+      this.selectDataByTime();
+      this.getKeyWordsByTime();
+      this.getHotByTime();
+      this.getEmoByTime();
+    },
+    // 热度
+    getAllHot(){
+      axios.get("http://localhost:8081/Record/all/hot").then((res)=>{
+        console.log(res.data);
+        this.initHotEcharts(res.data.data);
+        this.$message.success(res.data.msg);
+      })
+    },
+    getHotByTime(){
+      axios.get("http://localhost:8081/Record/byTime/hot/"+this.time).then((res)=>{
+        console.log(res.data);
+        if (res.data.flag){
+          this.initHotEcharts(res.data.data);
+          this.$message.success(res.data.msg);
+        }else{
+          this.$message.error(res.data.msg);
+        }
+      })
+    },
+    // 关键词、词频 对应饼图和词云图
+    getAllKeyWords() {
+      axios.get("http://localhost:8081/Record/all")
+          .then((res) => {
+            console.log(res.data);
+            this.initCloudEcharts(res.data.data);
+            this.initPieEcharts(res.data.data);
+            this.$message.success(res.data.msg);
+          }).finally()
+    },
+    getKeyWordsByTime() {
+      axios.get("http://localhost:8081/Record/byTime/"+this.time)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.flag){
+              this.initCloudEcharts(res.data.data);
+              this.initPieEcharts(res.data.data);
+              this.$message.success(res.data.msg);
+            }else{
+              this.$message.error(res.data.msg);
+            }
+          }).finally()
+    },
+    //情感分析
+    getAllEmo(){
+      axios.get("http://localhost:8081/Record/all/emo")
+          .then((res) => {
+            console.log(res.data);
+            this.initEmoEcharts(res.data.data);
+            this.$message.success(res.data.msg);
+          }).finally()
+    },
+    getEmoByTime(){
+      axios.get("http://localhost:8081/Record/byTime/emo/"+this.time)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.flag){
+              this.initEmoEcharts(res.data.data);
+              this.$message.success(res.data.msg);
+            }else {
+              this.$message.error(res.data.msg);
+            }
+
+          }).finally()
+    },
+
+
     indexMethod(index) {
       return index+1;
     },
@@ -120,9 +189,6 @@ export default {
       }else{
         this.selectDataByTime();
       }
-      // else{
-      //   this.selectByEditTime()
-      // }
     },
     //根据时间分页查询
     selectAllData(){
@@ -149,7 +215,6 @@ export default {
             }else{
               this.$message.error(res.data.msg)
             }
-
           }).finally()
     },
 
@@ -163,7 +228,11 @@ export default {
     deleteData(){
       axios.get("http://localhost:8081/Record/delete"+"/"+this.time)
           .then((res)=>{
-            this.$message.success(res.data.msg);
+            if (res.data.flag){
+              this.$message.success(res.data.msg);
+            }else {
+              this.$message.error(res.data.msg);
+            }
           }).finally()
     },
 

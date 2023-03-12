@@ -25,8 +25,12 @@ public class RecordController {
     }
     @GetMapping("/selectData/{currentPage}/{pageSize}/{time}")
     public R selectData(@PathVariable int currentPage, @PathVariable int pageSize, @PathVariable String time){
-        String[] timeSplit = time.split(",");
-        return outputSelectDataService.SelectDataByTime(currentPage,pageSize,timeSplit[0],timeSplit[1]);
+        try{
+            String[] timeSplit = time.split(",");
+            return outputSelectDataService.SelectDataByTime(currentPage,pageSize,timeSplit[0],timeSplit[1]);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
     }
 
     @GetMapping("/delete")
@@ -35,8 +39,12 @@ public class RecordController {
     }
     @GetMapping("/delete/{time}")
     public R deleteData(@PathVariable String time){
-        String[] timeSplit = time.split(",");
-        return outpuDeleteDataService.Delete(timeSplit[0],timeSplit[1]);
+        try{
+            String[] timeSplit = time.split(",");
+            return outpuDeleteDataService.Delete(timeSplit[0],timeSplit[1]);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
     }
 
 
