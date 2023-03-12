@@ -79,11 +79,11 @@
       <recent name="com.xzy" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.xzy.service.impl" />
       <recent name="com.xzy.service" />
+      <recent name="com.xzy.dao" />
+      <recent name="com.xzy.domain" />
+      <recent name="com.xzy.service.impl" />
       <recent name="com.xzy.domain.DTO" />
-      <recent name="com.xzy.service.impl.impl" />
-      <recent name="com.xzy.controller" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.SpringbootApplication">
@@ -168,7 +168,7 @@
       <workItem from="1678433707577" duration="37339000" />
       <workItem from="1678590897345" duration="675000" />
       <workItem from="1678591674071" duration="4407000" />
-      <workItem from="1678596383942" duration="7060000" />
+      <workItem from="1678596383942" duration="21363000" />
     </task>
     <servers />
   </component>

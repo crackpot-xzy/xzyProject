@@ -6,4 +6,5 @@ import com.xzy.domain.Input;
 
 public interface DeleteInputTabService extends IService<Input> {
     R Delete();
+    R Delete(String startTime, String endTime);
 }

@@ -11,9 +11,8 @@
         end-placeholder="结束日期"
     >
     </el-date-picker>
-    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectDateByTime"><el-icon><CaretLeft /></el-icon>条件查询</el-button>
-    <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectAllDate"><el-icon><List /></el-icon>查询全部</el-button>
-    <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="deleteDate"><el-icon><DeleteFilled /></el-icon>清空数据</el-button>
+    <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="selectDataByTime"><el-icon><List /></el-icon>数据查询</el-button>
+    <el-button type="danger" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="open"><el-icon><DeleteFilled /></el-icon>删除数据</el-button>
   </div>
   <el-table
       :data="tableData"
@@ -22,7 +21,7 @@
       style="width: 90%;height:500px;margin-left: auto;margin-right: auto;margin-top: 25px;">
     <el-table-column
         label="序号"
-        width="180"
+        width="80"
         type="index"
         fixed
         :index="indexMethod">
@@ -62,8 +61,7 @@ export default {
   components: {Footer, Header},
   data() {
     return {
-      time: {
-      },
+      time: '',
       flag:0,
       tableData: [],
       pagination: {//分页相关模型数据
@@ -80,30 +78,26 @@ export default {
       return index+1;
     },
     //根据时间分页查询
-    selectAllDate(){
-        this.flag=0;
-        axios.get("http://localhost:8081/Search/selectDate/"+this.pagination.currentPage+"/"+this.pagination.pageSize)
-            .then((res)=>{
-              this.tableData = res.data.data.records;
-              console.log(res.data.data);
-              this.pagination.currentPage = res.data.data.current;
-              this.pagination.total = res.data.data.total;
-              // this.$message.success(res.data.msg)
-            }).finally()
-    },
-    selectDateByTime(){
+    selectDataByTime(){
         this.flag=1;
-        axios.get("http://localhost:8081/Search/selectDate/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time)
+        axios.get("http://localhost:8081/Search/selectData/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/"+this.time)
             .then((res)=>{
               this.tableData = res.data.data.records;
               console.log(res.data.data);
               this.pagination.currentPage = res.data.data.current;
               this.pagination.total = res.data.data.total;
-              // this.$message.success(res.data.msg)
+              this.$message.success(res.data.msg)
             }).finally()
     },
-    deleteDate(){
-      axios.get("http://localhost:8081/Search/delete")
+    open() {
+      this.$confirm('请确认是否清空数据？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {this.deleteData()})
+    },
+    deleteData(){
+      axios.get("http://localhost:8081/Search/delete/"+this.time)
           .then((res)=>{
             this.$message.success(res.data.msg);
           }).finally()
@@ -114,9 +108,9 @@ export default {
       this.pagination.currentPage = currentPage;
       //执行查询
       if (this.flag===0){
-        this.selectAllDate();
+        this.selectAllData();
       }else{
-        this.selectDateByTime();
+        this.selectDataByTime();
       }
 
     },

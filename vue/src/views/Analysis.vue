@@ -12,7 +12,7 @@
     </el-date-picker>
     <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="getByTime"><el-icon><CaretLeft /></el-icon>条件分析</el-button>
     <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="getAll"><el-icon><List /></el-icon>分析全部</el-button>
-    <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 120px" @click="saveToRecord"><el-icon><Management /></el-icon>分析结果保存</el-button>
+    <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 120px" @click="saveToRecord"><el-icon><Management /></el-icon>结果保存</el-button>
 
   </div>
 
