@@ -12,7 +12,7 @@
     </el-date-picker>
     <el-button type="primary" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="getByTime"><el-icon><CaretLeft /></el-icon>条件分析</el-button>
     <el-button type="warning" style=" margin-left:10px;margin-top:-5px;width: 100px" @click="getAll"><el-icon><List /></el-icon>分析全部</el-button>
-    <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 120px"><el-icon><Management /></el-icon>分析结果保存</el-button>
+    <el-button type="success" style=" margin-left:10px;margin-top:-5px;width: 120px" @click="saveToRecord"><el-icon><Management /></el-icon>分析结果保存</el-button>
 
   </div>
 
@@ -34,6 +34,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import axios from "axios";
+import store from "@/store";
 export default {
   name: "Analysis",
   components: {Footer, Header},
@@ -41,72 +42,78 @@ export default {
     return {
       time: '',
       //热度指数最大刻度
-      max:500,
+      max:1000,
     }
   },
 
   methods: {
     getAll() {
+      this.$message.info("进行中...");
       this.getAllKeyWords();
       this.getAllHot();
+      this.getAllEmo();
     },
     getByTime() {
+      this.$message.info("进行中...");
       this.getKeyWordsByTime();
       this.getHotByTime();
+      this.getEmoByTime();
+    },
+    saveToRecord(){
+      axios.get("http://localhost:8081/Analysis/save").then((res)=>{
+        console.log(res.data);
+        this.$message.success(res.data.msg);
+      })
     },
     // 热度
     getAllHot(){
       axios.get("http://localhost:8081/Analysis/all/hot").then((res)=>{
         console.log(res.data);
         this.initHotEcharts(res.data.data);
+        this.$message.success(res.data.msg);
       })
     },
     getHotByTime(){
       axios.get("http://localhost:8081/Analysis/byTime/hot/"+this.time).then((res)=>{
         console.log(res.data);
         this.initHotEcharts(res.data.data);
+        this.$message.success(res.data.msg);
       })
     },
     // 关键词、词频 对应饼图和词云图
     getAllKeyWords() {
-      this.$message.info("进行中...");
       axios.get("http://localhost:8081/Analysis/all")
           .then((res) => {
             console.log(res.data);
-            this.$message.success(res.data.msg);
             this.initCloudEcharts(res.data.data);
             this.initPieEcharts(res.data.data);
+            this.$message.success(res.data.msg);
           }).finally()
     },
     getKeyWordsByTime() {
-      this.$message.info("进行中...");
       axios.get("http://localhost:8081/Analysis/byTime/"+this.time)
           .then((res) => {
             console.log(res.data);
-            this.$message.success(res.data.msg);
             this.initCloudEcharts(res.data.data);
             this.initPieEcharts(res.data.data);
+            this.$message.success(res.data.msg);
           }).finally()
     },
     //情感分析
     getAllEmo(){
-      this.$message.info("进行中...");
-      axios.get("http://localhost:8081/Analysis/all/emo")
+      axios.get("http://localhost:8081/Analysis/all/emo/"+store.state.id)
           .then((res) => {
             console.log(res.data);
+            this.initEmoEcharts(res.data.data);
             this.$message.success(res.data.msg);
-            this.initCloudEcharts(res.data.data);
-            this.initPieEcharts(res.data.data);
           }).finally()
     },
     getEmoByTime(){
-      this.$message.info("进行中...");
-      axios.get("http://localhost:8081/Analysis/byTime/emo/"+this.time)
+      axios.get("http://localhost:8081/Analysis/byTime/emo/"+this.time+"/"+store.state.id)
           .then((res) => {
             console.log(res.data);
+            this.initEmoEcharts(res.data.data);
             this.$message.success(res.data.msg);
-            this.initCloudEcharts(res.data.data);
-            this.initPieEcharts(res.data.data);
           }).finally()
     },
 
@@ -319,25 +326,22 @@ export default {
         },
         series: [
           {
-            data: [
-              { value: data.value1,
-                itemStyle: {
+            data:data,
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true, //开启显示数值
+                  position: 'top', //数值在上方显示
+                  textStyle: {  //数值样式
+                    fontSize: 14  //字体大小
+                  }
+                },
+                color: function(params){
+                  var colorList = ['#749f83', '#61a0a8','#c23531'];
+                  return colorList[params.dataIndex]
                 }
-
-              },
-              { value: data.value2,
-                itemStyle: {
-                  color: 'yellow'
-                }
-
-              },
-              { value: data.value3,
-                itemStyle: {
-                  color: 'red'
-                }
-
               }
-            ],
+            },
             type: 'bar',
             showBackground: true,
             backgroundStyle: {

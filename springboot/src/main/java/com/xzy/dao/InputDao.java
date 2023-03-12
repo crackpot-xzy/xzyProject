@@ -33,5 +33,7 @@ public interface InputDao extends BaseMapper<Input> {
     @Select("SELECT COUNT(*)+SUM(attitudes)+SUM(comments)+SUM(reposts) FROM input WHERE created BETWEEN #{firstTime} AND #{endTime}")
     int getHotNumberByTime(String endTime,String firstTime);
 
-
+    //保存结果记录
+    @Insert("INSERT INTO output SELECT * FROM input WHERE NOT EXISTS(SELECT * FROM output WHERE input.id=output.id) AND input.`user` IS NOT NULL AND input.emo IS NOT NULL AND input.edit IS NOT NULL")
+    int SaveToOutput();
 }

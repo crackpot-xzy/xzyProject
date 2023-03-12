@@ -109,7 +109,7 @@ public class KeyWordServiceImpl extends ServiceImpl<InputDao, Input> implements 
             }
         }
         Collections.sort(listNameValue);//返回排序后的数据
-        return new R(true,listNameValue,"分析完成");
+        return new R(true,listNameValue,"全部关键词分析完成");
     }
 
     @Override
@@ -149,7 +149,7 @@ public class KeyWordServiceImpl extends ServiceImpl<InputDao, Input> implements 
             }
         }
         Collections.sort(listNameValue);//返回排序后的数据
-        return new R(true,listNameValue,"分析完成");
+        return new R(true,listNameValue,"该时间段关键词分析完成");
     }
 
     @Override

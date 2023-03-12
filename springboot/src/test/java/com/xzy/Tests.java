@@ -8,10 +8,11 @@ import com.xzy.dao.InputDao;
 import com.xzy.domain.DTO.KeyWordDataDto;
 import com.xzy.domain.DTO.NameValueDto;
 import com.xzy.domain.Input;
-import com.xzy.service.HanlpEmo.ClassifierConstant;
-import com.xzy.service.HanlpEmo.HanLpClassifier;
+
 import com.xzy.service.KeyWordService;
 
+import com.xzy.service.ClassifierConstant;
+import com.xzy.service.HanLpClassifier;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -140,22 +141,24 @@ class Tests {
     }
     @Test
     public void test(){
-        //微博评论文本分类及情感分析实现，争取实现3分类 得分在-1到1之间的为中性
         HanLpClassifier.initClassifier(ClassifierConstant.DATASET_WEIBO_PATH, ClassifierConstant.WEIBO_MODEL_PATH);
-        System.out.println(HanLpClassifier.getClassification("还可以"));
-        System.out.println(HanLpClassifier.getClassification("一般般"));
-        System.out.println(HanLpClassifier.getClassification("还不错"));
-        System.out.println(HanLpClassifier.getClassification("垃圾！"));
+        System.out.println(HanLpClassifier.getClassification("天安门"));
+        System.out.println(HanLpClassifier.getClassification("哇哦今年的春夏季衣服不错诶"));
+        System.out.println(HanLpClassifier.getClassification("去死吧"));
+        System.out.println(HanLpClassifier.getClassification("加油"));
         System.out.println(HanLpClassifier.getClassification("你真好"));
-        System.out.println(HanLpClassifier.getClassification("好棒！"));
-        System.out.println(HanLpClassifier.getClassification("你真坏"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("还可以"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("一般般"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("还不错"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("垃圾！"));
         System.out.println(HanLpClassifier.getScoreOfWeiboComment("你真好"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("好棒！"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("你真坏"));
+        System.out.println(HanLpClassifier.getScoreOfWeiboComment("一般般"));
+        System.out.println(HanLpClassifier.getScoreOfWeiboComment("好想去杭州"));
+        System.out.println(HanLpClassifier.getClassification("好想去杭州"));
+
     }
 
+    @Test
+    public void testList(){
+        List list = new ArrayList<>();
+        int good=1;int neu=2;int bad=3;
+        list.add(good);list.add(neu);list.add(bad);
+        System.out.println(list);
+    }
 }
