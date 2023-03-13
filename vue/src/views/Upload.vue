@@ -61,7 +61,7 @@
           </el-input>
         </div>
         <div>
-          <el-button type="primary" style="margin-left: 280px;margin-top:30px;width: 100px" @click="userTo">确认</el-button>
+          <el-button type="primary" style="margin-left: 280px;margin-top:10px;width: 100px" @click="userTo">确认</el-button>
         </div>
       </el-tab-pane>
       <el-tab-pane label="表格导入">
