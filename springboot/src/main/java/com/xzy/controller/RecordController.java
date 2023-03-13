@@ -20,6 +20,8 @@ public class RecordController {
     OutputKeyWordService outputKeyWordService;
     @Autowired
     OutputHotService outputHotService;
+    @Autowired
+    OutputEmoService outputEmoService;
 
     @GetMapping("/selectData/{currentPage}/{pageSize}/{id}")
     public R selectData(@PathVariable int currentPage,@PathVariable int pageSize,@PathVariable Integer id){
@@ -68,6 +70,21 @@ public class RecordController {
         try{
             String[] timeSplit = time.split(",");
             return outputHotService.getHotByTime(timeSplit[0],timeSplit[1],id);
+        }catch (Exception e){
+            return new R(false,null,"请选择正确的时间");
+        }
+    }
+
+    @GetMapping("/all/emo/{id}")
+    public R EmoAll(@PathVariable Integer id){
+        return outputEmoService.getAllEmo(id);
+    }
+
+    @GetMapping("/byTime/emo/{time}/{id}")
+    public R EmoByTime(@PathVariable String time,@PathVariable Integer id){
+        try{
+            String[] timeSplit = time.split(",");
+            return outputEmoService.getEmoByTime(timeSplit[0],timeSplit[1],id);
         }catch (Exception e){
             return new R(false,null,"请选择正确的时间");
         }

@@ -104,13 +104,13 @@ export default {
       this.selectAllData();
       this.getAllKeyWords();
       this.getAllHot();
-      // this.getAllEmo();
+      this.getAllEmo();
     },
     getByTime() {
       this.selectDataByTime();
       this.getKeyWordsByTime();
       this.getHotByTime();
-      // this.getEmoByTime();
+      this.getEmoByTime();
     },
     // 热度
     getAllHot(){
@@ -156,7 +156,7 @@ export default {
     },
     //情感分析
     getAllEmo(){
-      axios.get("http://localhost:8081/Record/all/emo")
+      axios.get("http://localhost:8081/Record/all/emo/"+store.state.id)
           .then((res) => {
             console.log(res.data);
             this.initEmoEcharts(res.data.data);
@@ -164,7 +164,7 @@ export default {
           }).finally()
     },
     getEmoByTime(){
-      axios.get("http://localhost:8081/Record/byTime/emo/"+this.time)
+      axios.get("http://localhost:8081/Record/byTime/emo/"+this.time+"/"+store.state.id)
           .then((res) => {
             console.log(res.data);
             if (res.data.flag){
