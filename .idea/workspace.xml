@@ -86,20 +86,7 @@
       <recent name="com.xzy.domain.DTO" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Tests">
-    <configuration name="OpenAIAPI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xzy.controller.utils.OpenAIAPI" />
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.controller.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.SpringbootApplication">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xzy.Test" />
       <module name="springboot" />
@@ -109,67 +96,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.Testapi" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.xzy" />
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <option name="METHOD_NAME" value="Testapi" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.chat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.xzy" />
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <option name="METHOD_NAME" value="chat(java.lang.String)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xzy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.xzy" />
-      <option name="MAIN_CLASS_NAME" value="com.xzy.Tests" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -195,21 +121,7 @@
     <list>
       <item itemvalue="npm.serve" />
       <item itemvalue="Spring Boot.SpringbootApplication" />
-      <item itemvalue="JUnit.Tests.test" />
-      <item itemvalue="Application.OpenAIAPI" />
-      <item itemvalue="JUnit.Tests.Testapi" />
-      <item itemvalue="JUnit.Tests.chat" />
-      <item itemvalue="Application.Tests" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Tests" />
-        <item itemvalue="JUnit.Tests.chat" />
-        <item itemvalue="JUnit.Tests.Testapi" />
-        <item itemvalue="Application.OpenAIAPI" />
-        <item itemvalue="JUnit.Tests.test" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -234,7 +146,7 @@
       <workItem from="1678433707577" duration="37339000" />
       <workItem from="1678590897345" duration="675000" />
       <workItem from="1678591674071" duration="4407000" />
-      <workItem from="1678596383942" duration="39341000" />
+      <workItem from="1678596383942" duration="40418000" />
     </task>
     <servers />
   </component>
