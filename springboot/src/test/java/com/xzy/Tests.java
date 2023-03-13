@@ -1,164 +1,62 @@
 package com.xzy;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.hankcs.hanlp.HanLP;
-import com.xzy.dao.InputDao;
-import com.xzy.domain.DTO.KeyWordDataDto;
-import com.xzy.domain.DTO.NameValueDto;
-import com.xzy.domain.Input;
-
-import com.xzy.service.KeyWordService;
-
-import com.xzy.service.ClassifierConstant;
-import com.xzy.service.HanLpClassifier;
+import cn.hutool.core.convert.ConvertException;
+import cn.hutool.http.HttpException;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.alibaba.druid.support.json.JSONUtils;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
+//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
+//    https://23326.xyz/
+
 class Tests {
-
     @Test
-    void testtime(){
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("结果=====》"+formatter.format(date));
-    }
-
-    @Test
-    static void dateStrIsValid(String rawDateStr, String pattern) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-        Date date = null;
+    public static String chat(String txt) {
+        String text="你是什么东西";
+        String chatEndpoint = "https://api.openai.com/v1/chat/completions";
+        String apiKey = "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";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("model", "gpt-3.5-turbo");
+        List<Map<String, String>> dataList = new ArrayList<>();
+        dataList.add(new HashMap<String, String>(){{
+            put("role", "user");
+            put("content", text);
+        }});
+        paramMap.put("messages", dataList);
+        JSONObject message = null;
         try {
-            // 转化为 Date类型测试判断
-            date = dateFormat.parse(rawDateStr);
-            System.out.println(rawDateStr.equals(dateFormat.format(date)));
-        } catch (ParseException e) {
-            System.out.println(false);
-        }finally {
-
+            String body = HttpRequest.post(chatEndpoint)
+                    .header("Authorization", apiKey)
+                    .header("Content-Type", "application/json")
+                    .body(JSONUtils.toJSONString(paramMap))
+                    .execute()
+                    .body();
+            JSONObject jsonObject = JSONUtil.parseObj(body);
+            JSONArray choices = jsonObject.getJSONArray("choices");
+            JSONObject result = choices.get(0, JSONObject.class, Boolean.TRUE);
+            message = result.getJSONObject("message");
+        } catch (HttpException e) {
+            System.out.println("1");
+            return "出现了异常";
+        } catch (ConvertException e) {
+            System.out.println("2");
+            return "出现了异常";
         }
+        System.out.println(message.getStr("content"));
+        return message.getStr("content");
     }
     @Test
-    public static Boolean isNumeric(String str) {
-        Pattern pattern = Pattern.compile("[0-9]*");
-        return pattern.matcher(str).matches();
-    }
-    @Test
-    public static void main(String[] args) throws ParseException {
-//        Tests.dateStrIsValid("2021-03-01 20:20","yyyy-MM-dd HH:mm:ss");
-        System.out.println(Tests.isNumeric(""));
-    }
-
-    @Autowired
-    KeyWordService keyWordService;
-    @Test
-    public void keyWords(){
-        String token="98f0c8879f014018bf2ae7ebb895b4011678370438934token";
-        //申请的接口地址
-        String url="http://comdo.hanlp.com/hanlp/v1/keyword/extract";
-        //所有参数
-        Map<String,Object> params=new HashMap<String,Object>();
-        params.put("text", "看似海王，实则寡王\uD83D\uDE05\uD83D\uDE05我在杭州杭州杭州杭州杭州杭州的渣女人设深深立住了，就无语我只是在认真享受并分享我的生活，趁年轻尽情打扮自己而已啊");
-        params.put("size", "5");
-        String s = keyWordService.doHanlpApi(token,url,params);
-        System.out.println(s);
-//        List<KeyWordDto> listStr = JSON.parseArray(s,KeyWordDto.class);
-        JSONObject obj= JSONObject.parseObject(s);
-        JSONArray arr = obj.getJSONArray("data");
-        List<KeyWordDataDto> arr2 = arr.toJavaList(KeyWordDataDto.class);
-//        List<KeyWordData> listStr = JSON.parseArray(arr,KeyWordData.class);
-        System.out.println(arr2);
-        Map<String,Integer> res = new HashMap<>();
-        for (int i = 0; i < arr2.size(); i++) {
-            if(res.get(arr2.get(i).getWord())==null){
-                res.put(arr2.get(i).getWord(),1);
-            }else{
-                Integer value = res.get(arr2.get(i).getWord())+1;
-                res.put(arr2.get(i).getWord(),value);
-            }
-        }
-//        取出map中的键值对
-        System.out.println(res);
-        for(String key : res.keySet()){
-            Integer value = res.get(key);
-            System.out.println(key+"  "+value);
-        }
-//        List<NameValueDto> listNameValue = new ArrayList<>();
-//        for(String key : res.keySet()){
-//            Integer value = res.get(key);
-//            NameValueDto nameValueDto = new NameValueDto();
-//            nameValueDto.setName(key);
-//            nameValueDto.setValue(value);
-//            listNameValue.add(nameValueDto);
-//        }
-        String json= JSON.toJSONString(res);
-        System.out.println(json);
-    }
-
-    //http://www.hankcs.com/nlp/hanlp.html 参考文章
-    @Autowired
-    InputDao inputDao;
-    @Test
-    public void testhanlp(){
-        //数据层操作
-        List<Input> ListInput = inputDao.selectList(null);
-
-        Map<String,Integer> res = new HashMap<>();//所有关键字的结果数组,进行词频统计
-        for (int i = 0; i < ListInput.size(); i++) {
-            String s = ListInput.get(i).getText();
-            //提取关键词
-            List<String> keywordList = HanLP.extractKeyword(s, 50);
-            //词频统计
-            for (int j = 0; j < keywordList.size(); j++) {
-                if(res.get(keywordList.get(j))==null){//map中没有该关键词
-                    res.put(keywordList.get(j),1);
-                }else{
-                    Integer value = res.get(keywordList.get(j))+1;
-                    res.put(keywordList.get(j),value);
-                }
-            }
-        }
-        //取出map中的键值对
-        List<NameValueDto> listNameValue = new ArrayList<>();
-        for(String key : res.keySet()){
-            NameValueDto nameValueDto = new NameValueDto();
-            Integer value = res.get(key);
-            if (value>10&&!(key.equals("#")||key.equals("@")||key.equals("L"))){
-                nameValueDto.setName(key);
-                nameValueDto.setValue(value);
-                listNameValue.add(nameValueDto);
-            }
-        }
-        System.out.println(listNameValue);
-    }
-    @Test
-    public void test(){
-        HanLpClassifier.initClassifier(ClassifierConstant.DATASET_WEIBO_PATH, ClassifierConstant.WEIBO_MODEL_PATH);
-        System.out.println(HanLpClassifier.getClassification("天安门"));
-        System.out.println(HanLpClassifier.getClassification("哇哦今年的春夏季衣服不错诶"));
-        System.out.println(HanLpClassifier.getClassification("去死吧"));
-        System.out.println(HanLpClassifier.getClassification("加油"));
-        System.out.println(HanLpClassifier.getClassification("你真好"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("你真好"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("一般般"));
-        System.out.println(HanLpClassifier.getScoreOfWeiboComment("好想去杭州"));
-        System.out.println(HanLpClassifier.getClassification("好想去杭州"));
-
-    }
-
-    @Test
-    public void testList(){
-        List list = new ArrayList<>();
-        int good=1;int neu=2;int bad=3;
-        list.add(good);list.add(neu);list.add(bad);
-        System.out.println(list);
+    public static void main(String[] args) {
+        System.out.println(chat("Hello，一个小浪吴啊"));
     }
 }
