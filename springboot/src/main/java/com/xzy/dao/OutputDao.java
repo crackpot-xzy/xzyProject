@@ -14,9 +14,9 @@ public interface OutputDao extends BaseMapper<Output> {
     @Select("SELECT created FROM output WHERE `user`=#{id} ORDER BY created  desc LIMIT 1")
     String selectTimeEnd(Integer id);
     @Select("SELECT datediff(#{endTime},#{firstTime})")
-    int getDay(String endTime,String firstTime);
+    Integer getDay(String endTime,String firstTime);
     @Select("SELECT COUNT(*)+SUM(attitudes)+SUM(comments)+SUM(reposts) FROM output WHERE `user`=#{id}")
-    int getHotNumber(Integer id);
+    Integer getHotNumber(Integer id);
     @Select("SELECT COUNT(*)+SUM(attitudes)+SUM(comments)+SUM(reposts) FROM output WHERE `user`=#{id} AND created BETWEEN #{firstTime} AND #{endTime}")
-    int getHotNumberByTime(String endTime,String firstTime,Integer id);
+    Integer getHotNumberByTime(String endTime,String firstTime,Integer id);
 }

@@ -34,6 +34,6 @@ public interface InputDao extends BaseMapper<Input> {
     int getHotNumberByTime(String endTime,String firstTime);
 
     //保存结果记录
-    @Insert("INSERT INTO output SELECT * FROM input WHERE NOT EXISTS(SELECT * FROM output WHERE input.id=output.id) AND input.`user` IS NOT NULL AND input.emo IS NOT NULL AND input.edit IS NOT NULL")
+    @Insert("INSERT INTO output(output.id,output.`user`,output.text,output.location,output.attitudes,output.comments,output.reposts,output.emo,output.created,output.edit) SELECT input.id,input.`user`,input.text,input.location,input.attitudes,input.comments,input.reposts,input.emo,input.created,input.edit FROM input WHERE NOT EXISTS(SELECT * FROM output WHERE input.id=output.id AND input.`user`=output.`user`) AND input.`user` IS NOT NULL AND input.emo IS NOT NULL AND input.edit IS NOT NULL")
     int SaveToOutput();
 }

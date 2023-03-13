@@ -19,19 +19,29 @@ public class OutputHotServiceImpl extends ServiceImpl<OutputDao, Output> impleme
 
     @Override
     public R getAllHot(Integer id) {
-        String firstTime = outputDao.selectTimeFirst(id);
-        String endTime = outputDao.selectTimeEnd(id);
-        int day = outputDao.getDay(endTime,firstTime)+1;//+1保证不会出现/0的问题
-        int hotnumber = outputDao.getHotNumber(id);
-        Integer value = hotnumber/day;
-        return new R(true,value,"全时间段热度计算成功");
+        try{
+            String firstTime = outputDao.selectTimeFirst(id);
+            String endTime = outputDao.selectTimeEnd(id);
+            int day = outputDao.getDay(endTime,firstTime)+1;//+1保证不会出现/0的问题
+            int hotnumber = outputDao.getHotNumber(id);
+            Integer value = hotnumber/day;
+            return new R(true,value,"全时间段热度计算成功");
+        }catch (Exception e){
+            return new R(true,null,"无数据");
+        }
+
+
     }
 
     @Override
     public R getHotByTime(String startTime, String endTime,Integer id) {
-        int day = outputDao.getDay(endTime,startTime)+1;
-        int hotnumber = outputDao.getHotNumberByTime(endTime,startTime,id);
-        Integer value = hotnumber/day;
-        return new R(true,value,"该时间段热度计算成功");
+        try{
+            int day = outputDao.getDay(endTime,startTime)+1;//+1保证不会出现/0的问题
+            int hotnumber = outputDao.getHotNumberByTime(endTime,startTime,id);
+            Integer value = hotnumber/day;
+            return new R(true,value,"该时间段热度计算成功");
+        }catch (Exception e){
+            return new R(true,null,"无数据");
+        }
     }
 }

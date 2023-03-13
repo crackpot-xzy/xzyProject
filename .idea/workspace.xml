@@ -79,10 +79,10 @@
       <recent name="com.xzy" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xzy.domain" />
       <recent name="com.xzy.service.impl" />
       <recent name="com.xzy.service" />
       <recent name="com.xzy.dao" />
-      <recent name="com.xzy.domain" />
       <recent name="com.xzy.domain.DTO" />
     </key>
   </component>
@@ -146,7 +146,7 @@
       <workItem from="1678433707577" duration="37339000" />
       <workItem from="1678590897345" duration="675000" />
       <workItem from="1678591674071" duration="4407000" />
-      <workItem from="1678596383942" duration="40418000" />
+      <workItem from="1678596383942" duration="47187000" />
     </task>
     <servers />
   </component>
@@ -165,6 +165,15 @@
           <properties class="org.springframework.web.method.annotation.MethodArgumentTypeMismatchException" package="org.springframework.web.method.annotation" />
           <option name="timeStamp" value="5" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/springboot/src/main/java/com/xzy/service/HotService.java</url>
+          <line>11</line>
+          <properties class="com.xzy.service.HotService" method="getHotByTime">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

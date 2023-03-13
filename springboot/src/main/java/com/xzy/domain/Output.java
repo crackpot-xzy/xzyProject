@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @TableName(value = "output")
 public class Output {
+    private  int keyid;
     private String id;
     private Integer user;//所属用户id，用于output
     private String text;

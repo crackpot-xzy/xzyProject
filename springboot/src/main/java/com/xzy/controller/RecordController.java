@@ -65,6 +65,7 @@ public class RecordController {
     public R hotAll(@PathVariable Integer id){
         return outputHotService.getAllHot(id);
     }
+
     @GetMapping("/byTime/hot/{time}/{id}")
     public R hotByTime(@PathVariable String time,@PathVariable Integer id){
         try{

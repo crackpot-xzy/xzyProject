@@ -7,7 +7,7 @@ settings = get_project_settings()
 
 class CsvPipeline(object):
     def process_item(self, item, spider):
-        base_dir = 'B:\gitProject\xzyProject\weiboSpider'+os.sep+'output'
+        base_dir = 'output'
         if not os.path.isdir(base_dir):
             os.makedirs(base_dir)
         file_path = base_dir + os.sep + item['keyword'] +'.csv'
